@@ -13,8 +13,8 @@ const getters = {
     setting: state => state.user.setting,
     permission_routers: state => state.permission.routers,
     addRouters: state => state.permission.addRouters,
-    providerCode: 'B00001', // 厂商系统1
-    owner: state => state.user.owner, // 弃用
+    providerCode: state => state.user.providerCode, // 服务商code
+    owner: state => state.user.owner, //
     authorize_code: state => state.user.authorize_code,
     oauth_js_id: state => state.user.oauth_js_id
 };

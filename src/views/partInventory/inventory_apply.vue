@@ -315,6 +315,7 @@ export default {
       this.searchBaseInfoList();
     },
     searchBaseInfoList() {
+      this.listLoading = true;
       // 获取页面列表信息
       listApplyInStockOrder(this.queryInfo).then(response => {
           this.list = response.data.list;

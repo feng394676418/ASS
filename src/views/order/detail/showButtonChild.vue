@@ -5,7 +5,7 @@
 	            				<dt :class="detailValue.className" :id="detailValue.logStatus"><a>{{detailValue.logStatus | logStatusName }}</a></dt>
 	            				<dd>
 	            					<p><img alt="" class="img-circle" onerror="" :src="detailValue.imageSrc"><strong>{{detailValue.userName}}</strong></p>
-	            					<p class="description">{{detailValue.providerName}}</p>
+	            					<p class="description">{{detailValue.organization}}</p>
 	            					<p><i class="icon_data"></i>{{detailValue.createDate}}</p>
 	            				</dd>
 	            			</dl>
@@ -27,7 +27,7 @@ export default {
 			statusName: '',
 			imageSrc: '',
 			userName: '',
-			providerName: '',
+			organization: '',
 			createDate: '',
 			className: '',
 			styleValue: ''

@@ -186,8 +186,8 @@
 
 <script>
 
-  import { getOrderList,lockOrder,deleteOrder,getOrderNumByStatus,expOrder,getOrderByOrderNumber } from 'api/morder';
-  import {parseTime} from 'utils/index';
+  import { getOrderList, lockOrder, deleteOrder, getOrderNumByStatus, expOrder, getOrderByOrderNumber} from 'api/morder';
+  import { parseTime } from 'utils/index';
   import { addOrder } from 'api/morder';
   import { getProviderList } from 'api/providerMgr';
   import orderDetailInfo from './orderDetailInfo';
@@ -220,16 +220,16 @@
             providerCode: this.$store.getters.providerCode
       },
       statusItems: this.$t('order.statusItems'),
-      orders : [],
-      statusArr : [],
-      tempOrder : '',
-      isEdit : false,
+      orders: [],
+      statusArr: [],
+      tempOrder: '',
+      isEdit: false,
       providerOptions: [],
-      orderModalTitle : '',
-      providerAddress : '',
-      providerPhone : '',
-      providerCode : '',
-      providerType :'',
+      orderModalTitle: '',
+      providerAddress: '',
+      providerPhone: '',
+      providerCode: '',
+      providerType: '',
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -261,7 +261,7 @@
             16: 'success',
             17: 'warning',
             18: 'warning',
-            19: 'gray',        
+            19: 'gray'
           };
           return statusMap[status]
         }
@@ -275,8 +275,8 @@
         _this.getList();
         _this.getOrderNumByStatus();
 
-        _this.providerCode = _this.$store.getters.providerCode;
-        _this.providerType = _this.providerCode.substr(0, 1);
+        // _this.providerCode = _this.$store.getters.providerCode;
+        // _this.providerType = _this.providerCode.substr(0, 1);
         _this.getProviderList();
 
   },
@@ -407,7 +407,7 @@
         },
     getProviderList() {
               // 获取货主对应的 服务商list
-             getProviderList(this.$store.getters.providerCode).then(response => {
+             getProviderList().then(response => {
                 this.providerOptions = response.data;
             })
         },
@@ -443,16 +443,10 @@
                 var tHeader;
                 var filterVal;
 
-                if(this.providerType=='B'){
-                    tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
+                tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
                     this.$t('order.imei'), this.$t('order.facilitatorName'), this.$t('order.status'), this.$t('order.createDate')];
                     filterVal = ['refNumber', 'userName','trackingNo','productType','imei','facilitatorName','statusName','createDate'];
-                }
-                 if(this.providerType=='C'){
-                    tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
-                    this.$t('order.imei'), this.$t('order.owner'), this.$t('order.status'), this.$t('order.createDate')];
-                    filterVal = ['refNumber', 'userName','trackingNo','productType','imei','owner','statusName','createDate'];
-                }
+
                 const data = this.formatJson(filterVal, expList);
                 export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
         })

@@ -234,17 +234,17 @@ export default {
           appearanceinfo: '',
           partsStatus: '',
           partsStatusArr: [],
-          partsother : '',
+          partsother: '',
           troubleInfo: '',
           facilitatorCode: '',
           trackingNo: '',
-          expresscode : '',
-          productType : '',
-          providerAddress : '',
-          providerPhone : '',
+          expresscode: '',
+          productType: '',
+          providerAddress: '',
+          providerPhone: '',
           countrytmp: '',
-          statetmp:'',
-          language : Cookies.get("assLang")
+          statetmp: '',
+          language: Cookies.get("assLang")
       },
       isEdit : false,
       defaultOrder :'',
@@ -354,14 +354,14 @@ export default {
                 _this.$message.error(this.$t(response.data.message));
               }
           })
-        }else{
-          //为了防止连续点击两次保存、生成重复数据、所以做以下处理
-          $('#btnSubmit').attr('disabled',"true");
+        } else {
+          // 为了防止连续点击两次保存、生成重复数据、所以做以下处理
+          $('#btnSubmit').attr('disabled', 'true');
           setTimeout(() => {
-              $('#btnSubmit').removeAttr("disabled");
+              $('#btnSubmit').removeAttr('disabled');
           }, 3000);
           addOrder(_this.order).then(response => {
-              if(response.data.status=='0'){
+              if (response.data.status === '0') {
                 _this.$message({
                     message: this.$t(response.data.message),
                     type: 'success'

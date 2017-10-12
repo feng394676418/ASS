@@ -8,10 +8,9 @@
 
 import fetch from 'utils/fetch';
 
-export function getProviderList(ownerProviderCode) {
+export function getProviderList() {
     return fetch({
         url: 'api/provider/owner/provider/list',
-        method: 'get',
-        params: { ownerProviderCode }
+        method: 'get'
     });
 }

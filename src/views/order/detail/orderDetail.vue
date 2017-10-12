@@ -362,48 +362,48 @@
 
 										<!--编辑工单 按钮显示-->
 										<!--一加厂商权限-->
-										<template v-if="providerCode.substr(0,1) === 'B' && ( logInfoStatus === 11 || logInfoStatus === 1 )">
+										<template v-if="( logInfoStatus === 11 || logInfoStatus === 1 )">
 											<editOrderButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></editOrderButtonChild>
 										</template>
 
                     <!--受理 子组件 维修显示--> 
                     <!--角色权限追加 判断条件status role authorization-->
-                      <template v-if="providerCode.substr(0,1) === 'C' && (logInfoStatus === 11 || logInfoStatus === 1)">
+                      <!-- <template v-if="providerCode.substr(0,1) === 'C' && (logInfoStatus === 11 || logInfoStatus === 1)">
                         <acceptButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></acceptButtonChild> 
-                      </template>
+                      </template> -->
                       
                      <!--检测 子组件 维修显示-->
-                     <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 12 ">
+                     <!-- <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 12 ">
                        <checkButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></checkButtonChild>
-                     </template>
+                     </template> -->
 
                     <!--确认报价 子组件 货主显示-->
-                    <template v-if="providerCode.substr(0,1) === 'B' && logInfoStatus === 13">
+                    <template v-if="logInfoStatus === 13">
                       <confirmingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
                     </template>
                     <!--维修 子组件 服务商显示-->
-									  <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">
+									  <!-- <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">
 											<maintenanceButtonChild v-on:listenBaseInfo="refreshBaseInfo"></maintenanceButtonChild>
-										</template>
+										</template> -->
 
                     <!--质检 子组件显示 服务商显示-->
-										<template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 15">
+										<!-- <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 15">
                     <testButtonChild v-on:listenBaseInfo="refreshBaseInfo"></testButtonChild>
-										</template>
+										</template> -->
 
                     <!--结算 子组件 服务商-->
-										<template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 16 && logInfoRemark !== 'reject' && baseInfo.checkServiceType === '保外维修'">
+										<!-- <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 16 && logInfoRemark !== 'reject' && baseInfo.checkServiceType === '保外维修'">
                     <canculationButtonChild v-on:listenBaseInfo="refreshBaseInfo"></canculationButtonChild>
-										</template>
+										</template> -->
 
                     <!--发货 子组件 服务商-->
-										<template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 17 || ( providerCode.substr(0,1) === 'C' && logInfoStatus === 16 && logInfoRemark !== 'reject' && baseInfo.checkServiceType === '保内维修' )">
+										<!-- <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 17 || ( providerCode.substr(0,1) === 'C' && logInfoStatus === 16 && logInfoRemark !== 'reject' && baseInfo.checkServiceType === '保内维修' )">
                     <sendGoods :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></sendGoods>
-										</template>
+										</template> -->
                     <!--已收货 子组件-->
-										<template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 18">
+										<!-- <template v-if="providerCode.substr(0,1) === 'C' && logInfoStatus === 18">
                     <takingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></takingButtonChild>
-										</template>
+										</template> -->
 
 										<input style="width:0;height:0;border:none;background:none;" v-focus/> 
 	            			</div>
@@ -629,7 +629,7 @@ export default {
 			activeName: ['1', '2', '3'],
 			baseInfo: {},
       // PartInfoList: [{}], // 配件一览表
-      orderNumber: this.$route.params.orderNumber,
+      orderNumber: this.$route.params.orderNumber, // 路由传送值
     // value: '外观完好',
       checkAll: true,
       checkedParts: [],
@@ -702,19 +702,19 @@ export default {
 			});
 		},
 		fetchData() {
-        this.providerCode = this.$store.getters.providerCode;
+        // this.providerCode = this.$store.getters.providerCode;
 
 				getBaseInfo(this.orderNumber).then(response => {
 					this.baseInfo = response.data;
 					console.log('---------!!!!!!!!!!!!!------------');
 					console.dir(this.baseInfo);
 					
-					if(this.getAppLanguage()=='en' && this.baseInfo.partsStatus != '' && this.baseInfo.partsStatus != null){
-							this.baseInfo.partsStatus = this.baseInfo.partsStatus.replace('包装盒','Giftbox').replace('数据线','USB cable').replace('适配器','Power adaptor');
+					if (this.getAppLanguage() === 'en' && this.baseInfo.partsStatus !== '' && this.baseInfo.partsStatus !== null) {
+							this.baseInfo.partsStatus = this.baseInfo.partsStatus.replace('包装盒', 'Giftbox').replace('数据线', 'USB cable').replace('适配器', 'Power adaptor');
         	}
 					this.partsStatusArray = this.baseInfo.partsStatus === '' || this.baseInfo.partsStatus === null ? [] : this.baseInfo.partsStatus.split(',');
-					if(this.getAppLanguage()=='en' && this.baseInfo.appearance != '' && this.baseInfo.appearance != null){
-                this.baseInfo.appearance = this.baseInfo.appearance.replace('外观完好','Normal').replace('外观破损','Abnormal');
+					if (this.getAppLanguage() === 'en' && this.baseInfo.appearance !== '' && this.baseInfo.appearance !== null) {
+                this.baseInfo.appearance = this.baseInfo.appearance.replace('外观完好', 'Normal').replace('外观破损', 'Abnormal');
           }
 					this.$set(this.baseInfo, 'partsStatusArray', this.partsStatusArray);
         });
@@ -726,37 +726,38 @@ export default {
               if (index === 0 && array.length !== 1) {
                 towner.$set(element, 'className', progressSTS[0]);
               } else if (index === 0 && array.length === 1) {
-								if (towner.providerCode.substr(0, 1) === 'B') {
+								// if (towner.providerCode.substr(0, 1) === 'B') {
+									//厂商用户
 									towner.$set(element, 'className', progressSTS[0]);
 									towner.logInfoStatus = element.logStatus;
-								} else {
-									// 服务商  受理按钮有
-									towner.logInfoStatus = element.logStatus;
-									towner.$set(element, 'className', progressSTS[0]);
-									towner.$set(element, 'styleValue', '');
-								}
+								// } else {
+								// 	// 服务商  受理按钮有
+								// 	towner.logInfoStatus = element.logStatus;
+								// 	towner.$set(element, 'className', progressSTS[0]);
+								// 	towner.$set(element, 'styleValue', '');
+								// }
 							} else if (index === array.length - 1) {
 								towner.$set(element, 'className', progressSTS[3]);
 								towner.$set(element, 'styleValue', 'visibility:hidden');
 								towner.logInfoStatus = element.logStatus;
 								towner.logInfoRemark = element.remark;
-                if (towner.providerCode.substr(0, 1) === 'B') {
-                    // 货主
+                // if (towner.providerCode.substr(0, 1) === 'B') {
+                    // 货主用户
                     if (element.logStatus === 1 || element.logStatus === 13) {
                       // 确认报价按钮
 											towner.$set(element, 'className', progressSTS[2]);
 											towner.$set(element, 'styleValue', '');
                     }
-                } else if (towner.providerCode.substr(0, 1) === 'C') {
-                    // 维修商
-										if (element.logStatus === 11 || element.logStatus === 1 || element.logStatus === 12 || element.logStatus === 14 ||
-										element.logStatus === 15 || (element.logStatus === 16) || element.logStatus === 17 || element.logStatus === 18) {
-                        // 受理按钮||检测按钮||维修按钮||质检按钮 ||维修按钮 有
-                        // towner.$delete(element, 'className');
-												towner.$set(element, 'className', progressSTS[2]);
-												towner.$set(element, 'styleValue', '');
-                    }
-                }
+                // } else if (towner.providerCode.substr(0, 1) === 'C') {
+                //     // 维修商
+								// 		if (element.logStatus === 11 || element.logStatus === 1 || element.logStatus === 12 || element.logStatus === 14 ||
+								// 		element.logStatus === 15 || (element.logStatus === 16) || element.logStatus === 17 || element.logStatus === 18) {
+                //         // 受理按钮||检测按钮||维修按钮||质检按钮 ||维修按钮 有
+                //         // towner.$delete(element, 'className');
+								// 				towner.$set(element, 'className', progressSTS[2]);
+								// 				towner.$set(element, 'styleValue', '');
+                //     }
+                // }
               } else {
                 towner.$set(element, 'className', progressSTS[2]);
               }

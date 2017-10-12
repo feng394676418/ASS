@@ -18,8 +18,8 @@ const user = {
         setting: {
             articlePlatform: []
         },
-        providerCode: 'B00001', // 厂商系统内部CODE
-        owner: '', // 弃用
+        providerCode: '', // 服务商系统CODE
+        owner: [], // 用户管理货主信息 ownercode array
         authorize_code: '' // 授权码
     },
 
@@ -117,7 +117,6 @@ const user = {
         GetInfo({ commit, state }) {
             return new Promise((resolve, reject) => {
                 // 授权登录 获取用户信息
-                console.log('asdfadfadfasddsdf=====----======' + state.set_cookie);
                 getInfo(state.authorize_code, state.oauth_js_id).then(response => {
                     let systemLoginFlg = false; // 系统权限
                     const rpData = response.data;
@@ -125,7 +124,7 @@ const user = {
                         // 系统登录权限判定
                         if (rpData.rsltData.systeminfolist !== null && rpData.rsltData.systeminfolist !== 'undefined') {
                             rpData.rsltData.systeminfolist.forEach(item => {
-                                if (item.syscode === 'B00001') {
+                                if (item.syscode === 'ASS001') { // 系统CODE判断
                                     systemLoginFlg = true;
                                     return;
                                 }
@@ -141,8 +140,15 @@ const user = {
                         rpData.rsltData.rolelist.forEach(item => {
                             rpRoles.push(item.rolecode); // 角色设定
                         });
+
+                        const ownerArray = [];
+                        rpData.rsltData.ownerlist.forEach(item => {
+                            ownerArray.push(item.owner);
+                        });
+
                         console.dir(rpRoles);
                         commit('SET_ROLES', rpRoles);
+                        commit('SET_OWNER', ownerArray); // 用户管理货主CODE存放
                         console.log('roles------------------->' + state.roles);
                         commit('SET_NAME', rpData.rsltData.user.username);
                         commit('SET_AVATAR', rpData.rsltData.user.imagesrc);

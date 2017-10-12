@@ -18,7 +18,7 @@ export function getList(owner) {
 
 export function getOrderList(query) {
     return fetch({
-        url: 'api/morder/getOrderList',
+        url: 'api/morder/owner/order/list',
         method: 'get',
         params: query
     });
@@ -59,8 +59,8 @@ export function deleteOrder(params) {
 
 export function getOrderNumByStatus(params) {
     return fetch({
-        url: 'api/morder/getOrderNumByStatus',
-        method: 'post',
+        url: 'api/morder/owner/order/status/count',
+        method: 'get',
         data: params
     });
 }
