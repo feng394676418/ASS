@@ -150,10 +150,10 @@
       },
       methods: {
         fetchData() {
-          getList(this.$store.getters.providerCode).then(response => {
+          getList().then(response => {
             this.list = response.data;
           })
-        },
+        }
         // changeAssLang(lang) {
         //     // 转换全局语言
         //     //this.$i18n.locale = 'zh';

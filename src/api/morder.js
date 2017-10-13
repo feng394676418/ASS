@@ -8,11 +8,10 @@
 
 import fetch from 'utils/fetch';
 
-export function getList(owner) {
+export function getList() {
     return fetch({
         url: 'api/morder/owner/list',
-        method: 'get',
-        params: { owner }
+        method: 'get'
     });
 }
 
