@@ -394,7 +394,10 @@ export default {
           $('#orderInfo').modal();
     },
     getCountryList() {
+      console.log('国家信息查询开始!');
       getCountryList().then(response => {
+          console.log('国家信息查询结果!');
+          console.dir(response);
           if (response.data.status === '0') {
               this.countryList = response.data.rsltData;
           } else {
