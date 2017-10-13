@@ -23,7 +23,7 @@
                           <ul class="dropdown-menu dropdown-menu-default dropdown_add">
                             <li>
                               <!-- <a href="javascript:;"><i class="icon-doc"></i>新建备件申请</a> -->
-                              <a class="icon-doc" href="#orderInfo" data-toggle="modal" v-if="providerType == 'B'"><i class="icon-doc"></i>{{$t('order.NewWorkOrder')}}</a>
+                              <a class="icon-doc" href="#orderInfo" data-toggle="modal"><i class="icon-doc"></i>{{$t('order.NewWorkOrder')}}</a>
                             </li>
                           </ul>
                         </li>
@@ -138,15 +138,9 @@
         </template>
       </el-table-column>
 
-      <el-table-column v-if="providerType == 'B'" min-width="10%" align="center" :label="$t('order.facilitatorName')">
+      <el-table-column min-width="10%" align="center" :label="$t('order.facilitatorName')">
         <template scope="scope">
           <span>{{scope.row.facilitatorName}}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column v-if="providerType == 'C'" min-width="10%" align="center" :label="$t('order.owner')" prop="imei" sortable="custom">
-        <template scope="scope">
-          <span>{{scope.row.owner}}</span>
         </template>
       </el-table-column>
 
