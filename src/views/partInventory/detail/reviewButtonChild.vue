@@ -151,7 +151,7 @@ export default {
       console.dir(val);
     },
     warehouseCodeArrayInit() {
-      getWarehouseCodeList(this.$store.getters.providerCode).then(response => {
+      getWarehouseCodeList().then(response => {
         this.warehouseCodeArray = response.data;
       });
     }
