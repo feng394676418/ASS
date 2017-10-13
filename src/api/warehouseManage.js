@@ -76,12 +76,9 @@ export function handleDisable(param) {
     });
 }
 
-export function getWarehouseCodeList(ownerInnerCode) {
+export function getWarehouseCodeList() {
     return fetch({
         url: 'api/warehouse/code/list',
-        method: 'get',
-        params: {
-            ownerInnerCode
-        }
+        method: 'get'
     });
 }
