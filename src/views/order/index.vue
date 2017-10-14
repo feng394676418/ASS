@@ -434,12 +434,9 @@
     　　　       }));
           require.ensure([], () => {
                 const { export_json_to_excel } = require('vendor/Export2Excel');
-                var tHeader;
-                var filterVal;
-
-                tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
+                const tHeader = [this.$t('order.refNumber'), this.$t('order.userName'),this.$t('order.trackingNo'),this.$t('order.productType'),
                     this.$t('order.imei'), this.$t('order.facilitatorName'), this.$t('order.status'), this.$t('order.createDate')];
-                    filterVal = ['refNumber', 'userName','trackingNo','productType','imei','facilitatorName','statusName','createDate'];
+                const filterVal = ['refNumber', 'userName','trackingNo','productType','imei','facilitatorName','statusName','createDate'];
 
                 const data = this.formatJson(filterVal, expList);
                 export_json_to_excel(tHeader, data, this.$t('order.orderList')+parseTime(new Date()));
