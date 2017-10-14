@@ -260,15 +260,15 @@ export default {
           var expList;
           if(this.parts.length>0){
             expList = this.parts;
-            this.expPartInventory(expList);
+            this.expPart(expList);
           }else{
             expPartInventory(this.listQuery).then(response => {
               expList = response.data;
-              this.expPartInventory(expList);
+              this.expPart(expList);
             })
           }
         },
-        expPartInventory(expList){
+        expPart(expList){
           expList.map(obj => this.productTypeOption.map(function (item) {
                   if(item.value == obj.inventoryType){
                       obj.inventoryType =  item.label;
