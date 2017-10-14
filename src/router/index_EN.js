@@ -80,7 +80,7 @@ const orderDetail = _import('order/detail/orderDetail');
 
 const inventory_apply = _import('partInventory/inventory_apply');
 const inventory_apply_details = _import('partInventory/detail/Inventory_apply_details');
-//const inventory_bad_back = _import('partInventory/inventory_bad_back');
+// const inventory_bad_back = _import('partInventory/inventory_bad_back');
 // const bootstrapT = _import('order/detail/bootstrapT');
 
 Vue.use(Router);
@@ -157,8 +157,8 @@ export const asyncRouterMap_EN = [{
             { path: 'manufacturer/stockOrderDetail/:stockOrderNumber', component: manufacturerStockOrderDetail, hidden: true, name: 'warehouse details' },
             { path: 'manufacturer/change/index/:sku/:owner/:providerCode/:inventoryType', hidden: true, component: manufacturerPartInventoryChange, name: 'Inventory water' },
             { path: 'inventory_apply', component: inventory_apply, name: 'Apply parts', meta: { role: ['admin'] } },
-            { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['admin'] } },
-           // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['admin'] } }
+            { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['admin'] } }
+            // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['admin'] } }
         ]
 
     },
@@ -171,7 +171,7 @@ export const asyncRouterMap_EN = [{
         children: [
             { path: 'index', component: PartIndex, name: 'Spare parts' },
             { path: 'warehouse_index', component: WarehouseIndex, name: 'Warehouse' },
-            { path: 'model_index', component: ModelInfoIndex, name: 'Model' },
+            // { path: 'model_index', component: ModelInfoIndex, name: 'Model' }, //三期启用
             { path: 'set_index', component: SetIndex, name: 'Password' }
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },

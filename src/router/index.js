@@ -82,7 +82,7 @@ const orderDetail = _import('order/detail/orderDetail');
 
 const inventory_apply = _import('partInventory/inventory_apply');
 const inventory_apply_details = _import('partInventory/detail/Inventory_apply_details');
-//const inventory_bad_back = _import('partInventory/inventory_bad_back');
+// const inventory_bad_back = _import('partInventory/inventory_bad_back');
 // const bootstrapT = _import('order/detail/bootstrapT');
 
 Vue.use(Router);
@@ -160,7 +160,7 @@ export const asyncRouterMap_ZH_CN = [{
             { path: 'manufacturer/change/index/:sku/:owner/:providerCode/:inventoryType', hidden: true, component: manufacturerPartInventoryChange, name: '库存流水' },
             { path: 'inventory_apply', component: inventory_apply, name: '申请备件', meta: { role: ['admin'] } },
             { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: '申请备件', meta: { role: ['admin'] } }
-           // { path: 'badback', component: inventory_bad_back, name: '坏件返厂', meta: { role: ['admin'] } }
+            // { path: 'badback', component: inventory_bad_back, name: '坏件返厂', meta: { role: ['admin'] } }
         ]
 
     },
@@ -173,7 +173,7 @@ export const asyncRouterMap_ZH_CN = [{
         children: [
             { path: 'index', component: PartIndex, name: '备件设置' },
             { path: 'warehouse_index', component: WarehouseIndex, name: '仓库管理' },
-            { path: 'model_index', component: ModelInfoIndex, name: '机型管理' },
+            // { path: 'model_index', component: ModelInfoIndex, name: '机型管理' }, //三期启用
             { path: 'set_index', component: SetIndex, name: '修改密码' }
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },
