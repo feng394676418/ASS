@@ -381,8 +381,9 @@ export default {
     noStockInfo: '没有库存信息!',
     oldpassword: '原密码：',
     newpassword: '新密码：',
+    confirmpassword: '确认新密码：',
     enterpassword: '请输入密码',
     enterpasswordagain: '请再次输入密码',
-    Passwordinconsistent: '两次输入密码不一致!',
+    Passwordinconsistent: '两次输入新密码不一致!',
     ...zhLocale
 }

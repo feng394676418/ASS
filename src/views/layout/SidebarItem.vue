@@ -110,6 +110,9 @@ export default {
 
 
 <style>
+.hamburger-container {
+            padding: 13px 0;
+        }
 .el-menu--dark {
     background: #339abb!important;
 }
