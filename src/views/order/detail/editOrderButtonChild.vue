@@ -82,7 +82,7 @@
               </div> 
               <div class="form-group col-md-8">
                 <label for="">{{$t('order.address')}}<b>*</b>:</label>
-                <input class="form-control" id="addressDetail" placeholder="" alt="verifyEditOrderForm" v-verify-input:nonvoid ="{id:'addressDetail',format:true,title:$t('order.address')}" type="text" maxLength='45' v-model="order.addressDetail">
+                <input class="form-control" id="addressDetail" placeholder="" alt="verifyEditOrderForm" v-verify-input:lessthan ="{id:'addressDetail',format:3,title:$t('order.address')}" type="text" maxLength='35' v-model="order.addressDetail">
                 <div v-verify-msg:addressDetail></div>
               </div>
                </div>
