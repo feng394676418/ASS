@@ -302,9 +302,11 @@ export default {
                     this.order.userId = this.$store.getters.uid;
                     this.trackingNoTemp = this.order.trackingNo;
                     this.expresscodeTemp = this.order.expresscode;
-
                     if(this.getAppLanguage()=='en' && this.order.appearance != '' && this.order.appearance != null){
                           this.order.appearance = this.order.appearance.replace('外观完好','Normal').replace('外观破损','Abnormal');
+                    }
+                    if(this.getAppLanguage()=='zh' && this.order.appearance != '' && this.order.appearance != null){
+                        this.order.appearance = this.order.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
                     }
                 }else{
                   this.$message.error(response.data.message);
@@ -375,29 +377,19 @@ export default {
                 return;
               }
             }
-            
             this.order.partsStatus = this.baseInfo.partsStatusArray.toString();
-
             if(this.getAppLanguage()=='en' && this.order.partsStatus != '' && this.order.partsStatus != null){
                 this.order.partsStatus = this.order.partsStatus.replace('Giftbox','包装盒').replace('USB cable','数据线').replace('Power adaptor','适配器');
             }
-            if(this.getAppLanguage()=='en' && this.order.appearance != '' && this.order.appearance != null){
-                this.order.appearance = this.order.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
-            }
-                updateOrder(this.order).then(response => {
-                  if (response.data.status === '0') {
-                      this.$message.info(this.$t(response.data.message));
-                      this.$emit('listenBaseInfo');
-                      console.log('emitemitemitemitemitemitemitemitemit');
-                       $('#myModal99').modal('hide');
-                  } else {
-                    this.$message.error(response.data.message);
-                  }
-
-                  if(this.getAppLanguage()=='en' && this.order.appearance != '' && this.order.appearance != null){
-                          this.order.appearance = this.order.appearance.replace('外观完好','Normal').replace('外观破损','Abnormal');
-                  }
-              })
+            updateOrder(this.order).then(response => {
+              if (response.data.status === '0') {
+                  this.$message.info(this.$t(response.data.message));
+                  this.$emit('listenBaseInfo');
+                    $('#myModal99').modal('hide');
+              } else {
+                this.$message.error(response.data.message);
+              }
+            })
         },
         getCountryList() {
           getCountryList().then(response => {
