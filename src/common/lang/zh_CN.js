@@ -203,11 +203,12 @@ export default {
     Logout: '退出系统',
     Chinese: '简体中文',
     WingsingASS: '荣昇售后管理系统',
+    username: '用户名',
     password: '密码',
     Login: '登录',
     Forgotpassword: '忘记密码（或首次登录）',
-    legalemail: '请输入正确的合法邮箱',
-    passworddigits: '密码不能少于6位',
+    Usernameempty: '用户名不能为空',
+    passwordempty: '密码不能为空',
     all: '全部',
     // 备件
     part: {
