@@ -78,10 +78,10 @@ export function validPart(params) {
     });
 }
 
-export function getPartExcelUrl() {
+export function getPartExcelUrl(language) {
     return fetch({
         url: 'api/part/getFactoryExcelUrl',
         methods: 'get',
-        params: ''
+        params: { language }
     });
 }

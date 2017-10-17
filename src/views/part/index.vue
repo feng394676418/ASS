@@ -333,8 +333,6 @@
         _this.getProviderList();
         _this.getExcelUrl();
         _this.$on('verifyPartForm', function() {
-          console.log('----------------new part----------------');
-          console.log('----------------commit-----------------');
           _this.handSavePart();
         });
   },
@@ -534,7 +532,8 @@
       $('#partfile').val('');
     },
     getExcelUrl(){
-      getPartExcelUrl().then(response => {
+      var language = Cookies.get('assLang');
+      getPartExcelUrl(language).then(response => {
         this.partExcelUrl = response.data;
       })
     }

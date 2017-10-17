@@ -706,7 +706,6 @@ export default {
 
 				getBaseInfo(this.orderNumber).then(response => {
 					this.baseInfo = response.data;
-					console.log('---------!!!!!!!!!!!!!------------');
 					console.dir(this.baseInfo);
 					
 					if (this.getAppLanguage() === 'en' && this.baseInfo.partsStatus !== '' && this.baseInfo.partsStatus !== null) {
