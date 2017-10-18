@@ -193,7 +193,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" v-verify-final-check:verifyEditOrderForm type="submit">{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" v-verify-final-check:verifyEditOrderForm type="submit">{{$t('order.Affirm')}}</button>
         </div>
       </div>
     </div>
@@ -279,7 +279,6 @@ export default {
     }
   },
   created() {
-    console.dir(this.orderNumber+"   ##################");
         const _this = this;
         _this.providerType = _this.$store.getters.providerCode.substr(0, 1);
         _this.getProviderList();
@@ -381,6 +380,11 @@ export default {
             if(this.getAppLanguage()=='en' && this.order.partsStatus != '' && this.order.partsStatus != null){
                 this.order.partsStatus = this.order.partsStatus.replace('Giftbox','包装盒').replace('USB cable','数据线').replace('Power adaptor','适配器');
             }
+            //防止连续点击
+            $('#btnSubmit').attr('disabled', 'true');
+            setTimeout(() => {
+                $('#btnSubmit').removeAttr('disabled');
+            }, 3000);
             updateOrder(this.order).then(response => {
               if (response.data.status === '0') {
                   this.$message.info(this.$t(response.data.message));

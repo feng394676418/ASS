@@ -26,7 +26,7 @@
         </div>
         <div class="modal-footer">        	
           <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
-          <button class="btn btn-primary" type="button" @click="confirm()" >{{$t('order.Affirm')}}</button>
+          <button id="btnSubmit" class="btn btn-primary" type="button" @click="confirm()" >{{$t('order.Affirm')}}</button>
         </div>
         
       </div>
@@ -53,8 +53,11 @@ export default {
   },
   methods: {
     confirm() {
-      console.log('---!@@@@@@@@@@!_______');
-      console.log(this.orderNumber);
+      //防止连续点击
+      $('#btnSubmit').attr('disabled', 'true');
+      setTimeout(() => {
+          $('#btnSubmit').removeAttr('disabled');
+      }, 3000);
       confirmQuotesUpdate(this.orderNumber, this.uid).then(response => {
           if (response.data.status === '0') {
               this.$message.info(this.$t('order.Detail.Quoteconfirmedfinished'));
