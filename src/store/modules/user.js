@@ -1,5 +1,6 @@
 import { loginByEmail, logout, getInfo } from 'api/login';
 import Cookies from 'js-cookie';
+import md5 from 'js-md5';
 
 const user = {
     state: {
@@ -81,8 +82,9 @@ const user = {
         // 邮箱登录
         LoginByEmail({ commit }, userInfo) {
             const username = userInfo.username.trim();
+            const password = md5(userInfo.password);
             return new Promise((resolve, reject) => {
-                loginByEmail(username, userInfo.password).then(response => {
+                loginByEmail(username, password).then(response => {
                     console.dir(response);
                     const data = response.data;
 
@@ -102,7 +104,7 @@ const user = {
                     Cookies.set('ASS_TOKEN', data.code); // 授权码作为前端token 注意
                     commit('SET_TOKEN', data.code);
                     commit('SET_EMAIL', username);
-
+                    commit('SET_NAME', username);
                     resolve();
                 }).catch(error => {
                     console.dir(error);
@@ -117,7 +119,7 @@ const user = {
         GetInfo({ commit, state }) {
             return new Promise((resolve, reject) => {
                 // 授权登录 获取用户信息
-                getInfo(state.authorize_code, state.oauth_js_id).then(response => {
+                getInfo(state.authorize_code, state.oauth_js_id, state.name).then(response => {
                     let systemLoginFlg = false; // 系统权限
                     const rpData = response.data;
                     if (rpData.status === '0') {
@@ -158,7 +160,7 @@ const user = {
                     } else {
                         // 授权登录失败
                         console.log('授权登录失败');
-                        throw new Error('授权已过期!');
+                        throw new Error(rpData.message);
                     }
                 }).catch(error => {
                     // 以防万一再次删除
