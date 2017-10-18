@@ -25,7 +25,7 @@
                             {{$t('Personalinfo')}}
                         </el-dropdown-item>
                     </router-link>
-                    <router-link class='inlineBlock' to="/">
+                    <router-link class='inlineBlock' to="/components/set_index">
                         <el-dropdown-item>
                             {{$t('Changepassword')}}
                         </el-dropdown-item>
