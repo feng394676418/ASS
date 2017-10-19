@@ -194,7 +194,7 @@ export default {
         Vue.filter('productTypeFilter', function(val) {
             var productTypeName  = '';
             _this.productTypeOption.forEach(function (item) {
-                    if(item.value == val){
+                    if(item.value == val || item.label == val){
                         productTypeName =  item.label;
                   }
           　　　});
@@ -281,7 +281,7 @@ export default {
 
                     tHeader = [this.$t('inventory.owner'), this.$t('inventory.inventoryType'),this.$t('inventory.sku'),this.$t('inventory.name'),
                     this.$t('inventory.unit'), this.$t('inventory.qty')];
-                    filterVal = ['owner', 'inventoryType','sku','cnName','unit','number'];
+                    filterVal = ['owner', 'inventoryType','sku','enName','unit','availableNum'];
                 
                 const data = this.formatJson(filterVal, expList);
                 export_json_to_excel(tHeader, data, this.$t('inventory.title')+'  '+parseTime(new Date()));
