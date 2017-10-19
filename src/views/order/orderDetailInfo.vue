@@ -338,9 +338,9 @@ export default {
         if(_this.getAppLanguage()=='en' && _this.order.partsStatus != '' && _this.order.partsStatus != null){
             _this.order.partsStatus = _this.order.partsStatus.replace('Giftbox','包装盒').replace('USB cable','数据线').replace('Power adaptor','适配器');
         }
-        if(_this.getAppLanguage()=='en' && _this.order.appearance != '' && _this.order.appearance != null){
-                _this.order.appearance = _this.order.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
-        }
+        // if(_this.getAppLanguage()=='en' && _this.order.appearance != '' && _this.order.appearance != null){
+        //         _this.order.appearance = _this.order.appearance.replace('Normal','外观完好').replace('Abnormal','外观破损');
+        // }
         if(_this.isEdit){
             updateOrder(_this.order).then(response => {
               if(response.data.status=='0'){
@@ -359,7 +359,7 @@ export default {
           $('#btnSubmit').attr('disabled', 'true');
           setTimeout(() => {
               $('#btnSubmit').removeAttr('disabled');
-          }, 3000);
+          }, 30000);
           addOrder(_this.order).then(response => {
               if (response.data.status === '0') {
                 _this.$message({
