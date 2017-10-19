@@ -187,6 +187,9 @@ export default {
   color: #d0d1d2;
   cursor: pointer;
 }
+.el-form-item__error{
+  padding-top:3px
+}
 .demo-ruleForm input {
   max-width: 200px;
 }

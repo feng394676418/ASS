@@ -234,8 +234,9 @@
               <div class="panel-body main_form_input" style="padding-bottom:5px;">
                 <div class="col-md-12">
                   <form id="form1" enctype="multipart/form-data" method="post" action="">
-                      <input type="file" id="partfile" name="file" @change="selectedFile($event.target)"/></br>
-                      <button type="button" style="width:80px; height:27px;" class="btn btn-info btn-sm" @click="importExcel()">{{$t('part.import')}}</button>
+                      <input class="form-control" type="text" id="showfilename" />
+                      <i class="icon-upload"></i>
+                      <input class="form-control input_file" type="file" id="partfile" name="file" @change="selectedFile($event.target)"/></br>                      
                   </form>
                   {{$t('part.importExplain')}}&nbsp;&nbsp;<a :href="partExcelUrl" style="color:#00AAEE;">{{$t('part.templatesDownload')}}</a><br/>
 									{{$t('part.matters')}}：<br/>
@@ -248,6 +249,7 @@
           </div>
           <div class="modal-footer">
             <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
+            <button type="button" class="btn btn-primary" @click="importExcel()">{{$t('part.import')}}</button>
           </div>
         </div>
       </div>
@@ -498,13 +500,13 @@
           this.$message.error(this.$t('格式错误！请重新选择'));
           return;
       }
-      console.dir(file);
+      $('#showfilename').val(file.name);
     },
     importExcel() {
       var that = this;
       let files = document.getElementById('partfile').files;
       if (files && files.length) {
-        var fd = new FormData()
+        var fd = new FormData();
         fd.append('file', files[0]);
         fd.append('assLang', Cookies.get('assLang'));
         var reader = new window.FileReader()
@@ -550,6 +552,19 @@
 </script>
 
 <style>
+.input_file{
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top:0;
+  left: 0;
+}
+.icon-upload{
+  position: absolute;
+  top:7px;
+  right: 25px;  
+}
+
 .el-date-editor--daterange.el-input{
  width: 190px
 }
