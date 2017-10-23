@@ -23,7 +23,8 @@
     <div class="user_content main_form_input">
       <el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('oldpassword')" prop="pass">
-          <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+          <el-input :type="pwdType" v-model="ruleForm2.pass" auto-complete="off" @keyup.native="remErrorMsg"></el-input>
+          <div id="showoldpaderror" class="el-form-item__error" style="display: none;"></div>
           <span class="svg-container show-pwd" @click='showPwd'>
             <wscn-icon-svg :icon-class="iconclass" />
           </span> 
@@ -156,9 +157,9 @@ export default {
                 });
               }, 1000);
             } else {
-              this.$message.error(this.$t('originalpassworderror'));
-              // this.$message.error(response.data.message);
-              console.log(response.data.message);
+              $('#showoldpaderror').text(this.$t('originalpassworderror'));
+              $("#showoldpaderror").attr("style", "display:block;");  
+              //this.$message.error(this.$t('originalpassworderror'));
             }
           });
         } else {
@@ -166,6 +167,9 @@ export default {
           return false;
         }
       });
+    },
+    remErrorMsg(){
+      $("#showoldpaderror").attr("style", "display:none;");
     }
   }
 }
