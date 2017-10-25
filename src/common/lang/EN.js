@@ -203,7 +203,7 @@ export default {
     Changepassword: 'Change password',
     Logout: 'Log out',
     Chinese: '简体中文',
-    WingsingASS: 'Wingsing WSS',
+    WingsingASS: 'WingSing Service',
     // WingsingASS: 'Wingsing after-sales management system',
     password: 'Password',
     Login: 'Log in',
