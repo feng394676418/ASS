@@ -63,7 +63,7 @@
               </div> 
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.city')}}<b>*</b> </label>
-                    <el-autocomplete class="select_list form-control" v-model="order.city" id="city" :fetch-suggestions="querySearchCity" @keyup.native="cityChange"></el-autocomplete>
+                    <el-autocomplete class="select_list form-control" v-model="order.city" id="city" :fetch-suggestions="querySearchCity" @keyup.native="cityChange" @select="cityChange"></el-autocomplete>
                     <!--<el-select v-model="order.city" id="city" :placeholder="$t('order.choose')" size="small" class="select_list form-control" @change="cityChange">
                         <el-option
                         v-for="item in cityList"
