@@ -16,7 +16,7 @@
         	<form role="form">
           <div class="panel-body">
 					<div class="form-group col-md-3">
-                  <el-select class="select_list default form-control" v-model="verifyForm.reviewValue" :placeholder="$t('part.Auditresults')" @change="reviewChange" size="small">
+                  <el-select class="select_list default form-control" filterable v-model="verifyForm.reviewValue" :placeholder="$t('part.Auditresults')" @change="reviewChange" size="small">
                     <el-option
                       v-for="item in reviewArray"
                       :key="item.value"
@@ -29,7 +29,7 @@
               </div>
 					<div class="form-group col-md-8">
             <template v-if="verifyForm.reviewValue">
-                  <el-select class="select_list default form-control" v-model="verifyForm.warehouseCode" :placeholder="$t('part.Deliverywarehouse')" @change="warehouseCodeChange" size="small">
+                  <el-select class="select_list default form-control" filterable v-model="verifyForm.warehouseCode" :placeholder="$t('part.Deliverywarehouse')" @change="warehouseCodeChange" size="small">
                     <el-option
                       v-for="item in warehouseCodeArray"
                       :key="item"
