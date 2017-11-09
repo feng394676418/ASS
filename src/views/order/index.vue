@@ -69,7 +69,7 @@
     <h2>{{$t('order.orderList')}}</h2>
         <div class="order_list_menu ">
 	            	<ul class="list_menu">
-                  <li v-for="item in $t('order.statusItems')" @click="handleSearchByStatus(item) " :class="{'active':item.active,'unactive':!item.active}" >
+                  <li v-for="item in $t('order.statusItems')" @click="handleSearchByStatus(item)" :class="{'active':item.active,'unactive':!item.active}" >
                     {{item.name+"("+item.value+")"}} 
                   </li>
 	            	</ul>

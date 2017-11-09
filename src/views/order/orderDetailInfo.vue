@@ -41,7 +41,7 @@
               </div>               	
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.province')}}</label>
-                  <el-select v-model="order.statetmp" id="province" :placeholder="$t('order.choose')" size="small" class="select_list form-control" @change="stateChange">
+                  <el-select v-model="order.statetmp" id="province" filterable :placeholder="$t('order.choose')" size="small" class="select_list form-control" @change="stateChange">
                         <el-option
                         v-for="item in stateList"
                         :key="item.sortname"
@@ -145,7 +145,7 @@
               <div class="clearfix"></div>	
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.Appearance')}} </label>
-                    <el-select :placeholder="$t('order.choose')" id="appearance" size="small" class="select_list form-control" v-model="order.appearance">
+                    <el-select :placeholder="$t('order.choose')" id="appearance" filterable size="small" class="select_list form-control" v-model="order.appearance">
                         <el-option
                         v-for="item in appearanceOptions"
                         :key="item.value"
@@ -166,7 +166,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.facilitatorName')}}<b>*</b> </label>
-                    <el-select v-model="order.facilitatorCode" id="facilitatorCode" placeholder="" size="small"  class="select_list form-control" @change="handleChangeProvider">
+                    <el-select v-model="order.facilitatorCode" id="facilitatorCode" filterable placeholder="" size="small"  class="select_list form-control" @change="handleChangeProvider">
                         <el-option
                           v-for="item in providerOptions"
                           :key="item.providerCode"
@@ -414,13 +414,13 @@ export default {
           }
       })
     },
-    getCityList(stateId){
+    getCityList(stateId) {
       getCityList(stateId).then(response => {
           if (response.data.status === '0') {
               this.order.city = '';
               this.cityList = response.data.rsltData;
               this.cityList.forEach(item => {
-                  this.$set(item,'value',item.name);
+                  this.$set(item, 'value', item.name);
               });
           } else {
               this.$message.error(response.data.message);
@@ -429,15 +429,14 @@ export default {
     },
     querySearchCity(queryString, cb) {
       console.dir(this.cityList);
-      var restaurants = this.cityList;
-      var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+      const restaurants = this.cityList;
+      const results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
       // 调用 callback 返回建议列表的数据
       cb(results);
     },
     createFilter(queryString) {
-      return (restaurant) => {
-        return (restaurant.value.indexOf(queryString.toLowerCase()) === 0);
-      };
+      return restaurant =>
+        restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
     }
   }
 }
