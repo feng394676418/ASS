@@ -439,6 +439,7 @@ export default {
         restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
     },
     checkIMEI() {
+      console.log('aaaaaaaaaaaa' + Cookies.get('assLang'))
       this.order.imei = this.order.imei.replace(/\D/g, '');
     }
   }
