@@ -439,7 +439,7 @@ export default {
         restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
     },
     checkIMEI() {
-      this.order.imei = this.order.imei.replace(/\D/g, '', '');
+      this.order.imei = this.order.imei.replace(/\D/g, '');
     }
   }
 }
