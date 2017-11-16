@@ -104,7 +104,7 @@
                 </div>
 	              <div class="form-group col-md-4">
 	                <label for="">{{$t('order.imei')}}<b>* </b></label>
-	                <input class="form-control" id="imei" placeholder="" alt="verifyForm" v-verify-input:len ="{id:'imei',format:15,title:$t('order.imei')}" type="text" v-model="order.imei">
+	                <input class="form-control" id="imei" placeholder="" alt="verifyForm" v-verify-input:len ="{id:'imei',format:15,title:$t('order.imei')}" type="text" v-model="order.imei" @keyup="checkIMEI()">
                   <div v-verify-msg:imei></div>
 	              </div>              
               <div class="form-group col-md-4 buy_data">
@@ -437,6 +437,9 @@ export default {
     createFilter(queryString) {
       return restaurant =>
         restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0;
+    },
+    checkIMEI() {
+      this.order.imei=this.order.imei.replace(/\D/g,'','');
     }
   }
 }
