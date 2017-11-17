@@ -48,6 +48,14 @@ export default class V {
                     } else {
                         return v.length < len ? ['lessthan'] : 0
                     }
+                },
+                checkimei(v, len) {
+                    const g = /^[1-9]*[1-9][0-9]*$/;
+                    if (!g.test(v)) {
+                        return ['checkimei']
+                    } else {
+                        return v.length == len ? 0 : ['len']
+                    }
                 }
             }
             // 常用正则
@@ -180,12 +188,14 @@ export default class V {
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + '长度不能小于:' + v.value.format;
                     break
+                case 'checkimei':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + '必须为纯数字!';
+                    break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']验证不通过'
             }
-        }
-
-        if (assLang === 'en') {
+        } else if (assLang === 'en') {
             switch (ves[0]) {
                 case 'nonvoid':
                     str = '[' + v.value.title + ']'
@@ -214,6 +224,10 @@ export default class V {
                 case 'lessthan':
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
+                    break
+                case 'checkimei':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'Must be pure number!';
                     break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']Verification does not pass'
@@ -247,6 +261,10 @@ export default class V {
                 case 'lessthan':
                     str = '[' + v.value.title + ']'
                     el._cddv.msg = str + 'the length must not be less than:' + v.value.format;
+                    break
+                case 'checkimei':
+                    str = '[' + v.value.title + ']'
+                    el._cddv.msg = str + 'Must be pure number!';
                     break
                 default:
                     el._cddv.msg = '[' + v.value.title + ']Verification does not pass'

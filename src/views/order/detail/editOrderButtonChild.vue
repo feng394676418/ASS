@@ -114,7 +114,7 @@
                 </div>              
 	              <div class="form-group col-md-4">
 	                <label for="">{{$t('order.imei')}}<b>* </b></label>
-	                <input class="form-control" id="imei" placeholder="" alt="verifyEditOrderForm" v-verify-input:len ="{id:'imei',format:15,title:$t('order.imei')}" type="text" v-model="order.imei" @keyup="checkIMEI()">
+	                <input class="form-control" id="imei" placeholder="" alt="verifyEditOrderForm" v-verify-input:checkimei ="{id:'imei',format:15,title:$t('order.imei')}" type="text" v-model="order.imei">
                   <div v-verify-msg:imei></div>
 	              </div>              
               <div class="form-group col-md-4 buy_data">
