@@ -59,8 +59,8 @@ service.interceptors.response.use(
     // },
     error => {
         console.log('errsaaa' + error); // for debug
-        console.log('清空cookie-ASS_TOKEN');
-        Cookies.remove('ASS_TOKEN');
+        // console.log('清空cookie-ASS_TOKEN');
+        // Cookies.remove('ASS_TOKEN');
         // Message({
         //     message: error.message,
         //     type: 'error',
