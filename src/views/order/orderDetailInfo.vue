@@ -17,7 +17,7 @@
 	              </div>
 	              <div class="form-group col-md-4">
 	                <label for="">{{$t('order.tel')}}<b>* </b></label>
-	                <input class="form-control" placeholder="" id="phone" alt="verifyForm" v-verify-input:reg ="{id:'phone',format:'Phone',title:$t('order.tel')}"  type="text" maxLength='20' v-model="order.phone">
+	                <input class="form-control" placeholder="" id="phone" alt="verifyForm" v-verify-input:phone ="{id:'phone',format:15,title:$t('order.tel')}"  type="text" maxLength='20' v-model="order.phone">
                   <div v-verify-msg:phone></div>
 	              </div>
               <div class="form-group col-md-4">
