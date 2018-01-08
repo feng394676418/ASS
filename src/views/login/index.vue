@@ -117,12 +117,6 @@
                 this.$router.push({ path: '/' });
                 // this.showDialog = true;
               }).catch(err => {
-               console.log('-------------->>>' + err);
-                // Message({
-                //   message: err.message,
-                //   type: 'error',
-                //   duration: 5 * 1000
-                //  });
                 console.dir(err);
                 this.$message.error(err.message);
                 this.loading = false;

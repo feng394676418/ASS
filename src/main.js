@@ -91,6 +91,7 @@ function hasPermission(roles, permissionRoles) {
 
 // register global progress.
 const whiteList = ['/login', '/authredirect', '/reset', '/sendpwd']; // 不重定向白名单
+
 let asyncRouterMap = asyncRouterMap_EN;
 if (i18n.locale === 'zh') {
     asyncRouterMap = asyncRouterMap_ZH_CN;
@@ -133,7 +134,7 @@ router.beforeEach((to, from, next) => {
             }
         }
     } else {
-        if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单，直接进入
+        if (whiteList.indexOf(to.path) !== -1) { // 在免登录白名单中直接进入
             next(); // 进入所在地址
         } else {
             next('/login'); // 否则全部重定向到登录页

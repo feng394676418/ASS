@@ -12,9 +12,6 @@ export function loginByEmail(username, password) {
     };
     return fetch({
         url: 'api/user/login/loginbyemail',
-        // url: 'http://localhost:9966/authorize',
-        // url: '/login/loginbyemail',
-        // url: 'http://localhost:9966/authorize?username=aaa&password=bbb&client_id=c1ebe466-1cdc-4bd3-ab69-77c3561b9dee&response_type=code&redirect_uri=http://localhost:9901/user/login',
         method: 'post',
         data
     });
@@ -36,7 +33,7 @@ export function getInfo(code, oauth_js_id, name) {
         userInfoUri: 'http://192.168.81.250:9966/userInfo', // 校验环境URL
         // accessTokenUri: 'http://localhost:9966/accessToken', // 本地URL
         // userInfoUri: 'http://localhost:9966/userInfo', // 本地URL
-        // accessTokenUri: 'http://47.91.78.238:9966/accessToken', /生产URL
+        // accessTokenUri: 'http://47.91.78.238:9966/accessToken', // 生产URL
         // userInfoUri: 'http://47.91.78.238:9966/userInfo', // 生产URL
         redirectUri: 'http://localhost:9902/', // 保留 暂时未用
         no_redirect: 'true' // VUE 利用特别配置
