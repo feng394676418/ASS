@@ -185,7 +185,12 @@ export default {
             workordershipped: 'Confirmed payment, Work Order pending shipment.',
             workorderreceived: 'Confirmed shipment, Work Order pending received.',
             endworkorder: 'Shipment status shows as received, Work Order finished.',
-            TransactionNoNOTNULL: 'Transaction No. cannot be null!'
+            TransactionNoNOTNULL: 'Transaction No. cannot be null!',
+            Agreetorepair: 'Agree to repair',
+            totalcost: 'the total cost is',
+            agreeingquotedes: 'Repair service will start after agreeing to the quote; Customers need to settle the quotation when the service is completed.',
+            Disagreequotation: 'Disagree to the quotation',
+            quotationrefuseddes: 'If the quotation is refused, device will be returned to the customer once round trip delivery cost is received'
         },
         modalNotInput: 'The product modal must be set!',
         imeiNoNotInput: 'The IMEI NO. must be set!',
