@@ -98,6 +98,13 @@ if (i18n.locale === 'zh') {
 }
 router.beforeEach((to, from, next) => {
     NProgress.start(); // 开启Progress
+    // 过滤无效路径
+    if (to.matched.length === 0 && from.fullPath !== '/' && to.fullPath !== '/') {
+        next({ path: '/' });
+        NProgress.done();
+        return;
+    }
+
     if (store.getters.token) { // 判断是否有token
         if (to.path === '/login') {
             next({ path: '/' });
