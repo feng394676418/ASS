@@ -1321,14 +1321,13 @@ a:focus {
 }
 
 .close {
-    opacity: 0.5;
-    !important;
+    opacity: 0.5!important;
+    
 }
 
 .close:hover,
 .close:focus {
-    opacity: 1.0;
-    !important;
+    opacity: 1.0!important;
 }
 
 .gray-bg {
@@ -1557,7 +1556,67 @@ a:focus {
     color: red;
 }
 
-
+.Repair_description .el-radio {
+    color:#3c3c48
+}
+.Repair_description .form-group {
+    padding:16px 28px;
+    margin-bottom: 0;
+    cursor: pointer;
+}
+.Repair_description .form-group label {
+    margin-bottom: 0
+}
+.Repair_description p{
+    margin-bottom: 0;   
+}
+.Repair_description p strong{
+    font-weight: bold;
+}
+.Repair_description .el-radio__input{
+    float: left
+}
+.Repair_description .el-radio__label{
+    float: left;
+    margin-left: 5px;
+    max-width: 530px;
+}
+.Repair_description .text_blue{
+    color:#95c1fc;
+    font-size: 12px;
+    white-space: normal;
+    word-break: break-all;
+}
+.Agree_repair_active{
+    background: url(../img/Agree_repair_active.png) right center no-repeat;
+}
+.Refuse_repair_active{
+    background: url(../img/Refuse_repair_active.png) right center no-repeat;
+}
+.Agree_repair{
+    background: url(../img/Agree_repair.png) 581px center no-repeat;
+}
+.Agree_repair .el-radio{
+    color: #8c8c9e
+}
+.Agree_repair .text_blue{
+    color: #8c8c9e
+}
+.Agree_repair .text_yellow{
+    color: #8c8c9e
+}
+.Refuse_repair{
+    background: url(../img/Refuse_repair.png) 581px center no-repeat;    
+}
+.Refuse_repair .el-radio{
+    color: #8c8c9e
+}
+.Refuse_repair .text_blue{
+    color: #8c8c9e
+}
+.Refuse_repair .text_yellow{
+    color: #8c8c9e
+}
 /*个人设置--工单结算规则*/
 
 .user_content {

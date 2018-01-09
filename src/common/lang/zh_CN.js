@@ -185,7 +185,12 @@ export default {
             workordershipped: '完成结算,工单待发货。',
             workorderreceived: '完成发货,工单待收货。',
             endworkorder: '货况显示已收货,工单完结。',
-            TransactionNoNOTNULL: '交易流水号不能为空!'
+            TransactionNoNOTNULL: '交易流水号不能为空!',
+            Agreetorepair: '同意维修',
+            totalcost: '费用总计',
+            agreeingquotedes: '同意报价后，将开始维修，维修完成后客户需要按报价金额结算。',
+            Disagreequotation: '拒绝报价',
+            quotationrefuseddes: '拒绝报价后，会寄回待维修件，客户需要支付往返的快递费用，支付完成后方可发货。'
         },
         modalNotInput: '产品型号必须填写!',
         imeiNoNotInput: '产品IMEI必须填写!',
