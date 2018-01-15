@@ -379,7 +379,7 @@
 
                     <!--确认报价 子组件 货主显示-->
                     <template v-if="logInfoStatus === 13">
-                      <confirmingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
+                      <confirmingButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
                     </template>
                     <!--维修 子组件 服务商显示-->
 									  <!-- <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">

@@ -18,14 +18,16 @@
             <form role="form">              
 	              <div class="form-group grey_border Agree_repair_active" :class="{Agree_repair: AgreeActive}" @click="Agree_repair">
                   <el-radio v-model="Quote" label="1">
-                    <p>{{$t('order.Detail.Agreetorepair')}} :{{$t('order.Detail.totalcost')}} <strong class="text_yellow">€70.00</strong></p>
+                    <!--同意报价-->
+                    <p>{{$t('order.Detail.Agreetorepair')}} :{{$t('order.Detail.totalcost')}} <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.repairCost + baseInfo.partsCost | money}}</strong></p>
                     <p><span  class="text_blue">{{$t('order.Detail.agreeingquotedes')}} </span></p>
                   </el-radio>               
 	                <!-- <p>{{$t('order.Detail.Quotationdescription')}}</p> -->
 	              </div>
 	              <div class="form-group grey_border Refuse_repair_active" :class="{Refuse_repair: RefuseActive}" @click="Refuse_repair">                  
                   <el-radio v-model="Quote" label="0">
-                    <p>{{$t('order.Detail.Disagreequotation')}} :{{$t('order.Detail.totalcost')}}  <strong class="text_yellow">€7.00</strong></p>
+                    <!--拒绝报价-->
+                    <p>{{$t('order.Detail.Disagreequotation')}} :{{$t('order.Detail.totalcost')}}  <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.partsCost | money}}</strong></p>
                     <p><span  class="text_blue">{{$t('order.Detail.quotationrefuseddes')}} </span></p>
                   </el-radio> 
 	              </div>                
@@ -49,35 +51,58 @@
 
 import { confirmQuotesUpdate } from 'api/report';
 
-export default {  
+// 确认报价组件
+export default {
   name: 'confirmingButtonChild',
-  props: '',
+  props: {
+    baseInfo: {}
+  },
   data() {
     return {
-      AgreeActive:true,
-      RefuseActive:true,
+      AgreeActive: true,
+      RefuseActive: true,
       Quote: '',
       orderNumber: this.$route.params.orderNumber,
       uid: this.$store.getters.uid
     }
   },
+  filters: {
+        money(val) {
+        val = val === undefined ? '' : val.toString().replace(/\$|,/g, '');
+        if (isNaN(val)) {
+          val = '0';
+        }
+        const sign = val === (val = Math.abs(val));
+        val = Math.floor(val * 100 + 0.50000000001);
+        let cents = val % 100;
+        val = Math.floor(val / 100).toString();
+        if (cents < 10) {
+          cents = '0' + cents;
+        }
+        for (let i = 0; i < Math.floor((val.length - (1 + i)) / 3); i++) {
+            val = val.substring(0, val.length - (4 * i + 3)) + ',' + val.substring(val.length - (4 * i + 3));
+        }
+
+        return sign ? '' : val + '.' + cents;
+        }
+	},
   methods: {
-    //同意维修
-    Agree_repair:function(){
+    // 同意维修
+    Agree_repair() {
         this.AgreeActive = false;
         this.RefuseActive = true;
-        this.Quote='1';
+        this.Quote = '1';
         $('#btnSubmit').removeAttr('disabled');
     },
-    //拒绝报价
-    Refuse_repair:function(){      
-        this.RefuseActive = false;        
+    // 拒绝报价
+    Refuse_repair() {
+        this.RefuseActive = false;
         this.AgreeActive = true;
-        this.Quote='0';
+        this.Quote = '0';
         $('#btnSubmit').removeAttr('disabled');
-    },   
+    },
     confirm() {
-      //防止连续点击
+      // 防止连续点击
       $('#btnSubmit').attr('disabled', 'true');
       setTimeout(() => {
           $('#btnSubmit').removeAttr('disabled');
