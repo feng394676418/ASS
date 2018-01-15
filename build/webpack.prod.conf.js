@@ -35,9 +35,11 @@ var webpackConfig = merge(baseWebpackConfig, {
         }),
         new webpack.optimize.UglifyJsPlugin({
             compress: {
-                warnings: false
+                warnings: false,
+                drop_debugger: true,
+                drop_console: true
             },
-            sourceMap: true
+            // sourceMap: true
         }),
         // extract css into its own file
         new ExtractTextPlugin({
@@ -50,9 +52,8 @@ var webpackConfig = merge(baseWebpackConfig, {
         // you can customize output by editing /index.html
         // see https://github.com/ampedandwired/html-webpack-plugin
         new HtmlWebpackPlugin({
-            filename: process.env.NODE_ENV === 'testing'
-                ? 'index.html'
-                : config.build.index,
+            filename: process.env.NODE_ENV === 'testing' ?
+                'index.html' : config.build.index,
             template: 'index.html',
             inject: true,
             favicon: resolveApp('favicon.ico'),
@@ -68,14 +69,14 @@ var webpackConfig = merge(baseWebpackConfig, {
                 minifyCSS: true,
                 minifyURLs: true
             },
-             path:config.build.staticPath,
+            path: config.build.staticPath,
             // necessary to consistently work with multiple chunks via CommonsChunkPlugin
             chunksSortMode: 'dependency'
         }),
         // split vendor js into its own file
         new webpack.optimize.CommonsChunkPlugin({
             name: 'vendor',
-            minChunks: function (module, count) {
+            minChunks: function(module, count) {
                 // any required modules inside node_modules are extracted to vendor
                 return (
                     module.resource &&
@@ -93,13 +94,11 @@ var webpackConfig = merge(baseWebpackConfig, {
             chunks: ['vendor']
         }),
         // copy custom static assets
-        new CopyWebpackPlugin([
-            {
-                from: path.resolve(__dirname, '../static'),
-                to: config.build.assetsSubDirectory,
-                ignore: ['.*']
-            }
-        ]),
+        new CopyWebpackPlugin([{
+            from: path.resolve(__dirname, '../static'),
+            to: config.build.assetsSubDirectory,
+            ignore: ['.*']
+        }]),
         new webpack.ProvidePlugin({
             $: 'jquery',
             'jQuery': 'jquery'
