@@ -194,7 +194,7 @@
                   <span class="grey_text">{{$t('part.importExplain')}}</span>&nbsp;&nbsp;<a :href="orderExcelUrl" class="purple_text">{{$t('part.templatesDownload')}}</a><br/>								
                 </div>
                 <ul class="batchImport_body batchImportdes">
-                  <li>2018/01/08 10:00 <span class="black_text">400</span> {{$t('order.orders')}}{{$t('order.pass')}}，<span class="orange_text">100</span> {{$t('order.orders')}}{{$t('order.failed')}} <a class="purple_text">{{$t('order.Downloadfailedorders')}}。</a></li>
+                  <li>2018/01/08 10:00 <span class="black_text">400</span> {{$t('order.orders')}} {{$t('order.pass')}}，<span class="orange_text">100</span> {{$t('order.orders')}} {{$t('order.failed')}} <a class="purple_text">{{$t('order.Downloadfailedorders')}}。</a></li>
                   <li>• {{$t('order.Contactinfoincomplete')}} 20 {{$t('order.orders')}}</li>
                   <li>• {{$t('order.Addressinfoincorrect')}} 20 {{$t('order.orders')}}</li>
                   <li>• {{$t('order.Productinfoerror')}} 20 {{$t('order.orders')}}</li>
