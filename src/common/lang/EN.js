@@ -7,6 +7,8 @@ export default {
         EditWorkOrder: 'Edit',
         BatchImport: 'Batch Import',
         Downloadfailedorders: 'Download failed orders',
+        pass: 'pass',
+        failed: 'failed',
         Contactinfoincomplete: 'Contact information incomplete',
         Addressinfoincorrect: 'Address information incomplete/incorrect',
         Productinfoerror: 'Product information incomplete/error',

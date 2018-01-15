@@ -7,6 +7,8 @@ export default {
         EditWorkOrder: '编辑工单',
         BatchImport: '批量导入',
         Downloadfailedorders: '下载失败订单',
+        pass: '创建成功',
+        failed: '失败',
         Contactinfoincomplete: '联系人资料填写不完整',
         Addressinfoincorrect: '地址信息不完整/错误',
         Productinfoerror: '产品信息不完整/错误',
