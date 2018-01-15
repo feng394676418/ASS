@@ -236,7 +236,7 @@
                   <form id="form1" enctype="multipart/form-data" method="post" action="">
                       <input class="form-control" type="text" id="showfilename" />
                       <i class="icon-upload"></i>
-                      <input class="form-control input_file" type="file" id="partfile" name="file" @change="selectedFile($event.target)"/></br>                      
+                      <input class="form-control input_file" type="file" id="partfile" name="file" @change="selectedFile($event.target)"/><br/>                      
                   </form>
                   {{$t('part.importExplain')}}&nbsp;&nbsp;<a :href="partExcelUrl" style="color:#00AAEE;">{{$t('part.templatesDownload')}}</a><br/>
 									{{$t('part.matters')}}：<br/>

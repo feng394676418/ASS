@@ -24,6 +24,7 @@
                             <li>
                               <!-- <a href="javascript:;"><i class="icon-doc"></i>新建备件申请</a> -->
                               <a class="icon-doc" href="#orderInfo" data-toggle="modal"><i class="icon-doc"></i>{{$t('order.NewWorkOrder')}}</a>
+                              <a class="icon-doc" href="#batchImport" data-toggle="modal"><i class="icon-doc"></i>{{$t('order.BatchImport')}}</a>
                             </li>
                           </ul>
                         </li>
@@ -172,6 +173,45 @@
       </el-pagination>
     </div> 
      <orderDetailInfo ref="orderDetail"></orderDetailInfo> 
+    <!-- 批量导入工单-->
+    <div class="modal fade" id="batchImport">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h5 class="modal-title">{{$t('order.BatchImport')}}</h5>
+          </div>
+          <div class="modal-body">
+            <div class="order_detection main_form_input">
+              <div class="main_form_input" style="padding-bottom:5px;">
+                <div class="batchImport_body">
+                  <form id="batchform" enctype="multipart/form-data" method="post" action="">
+                      <input class="form-control" type="text" id="showfilename" :placeholder="$t('order.choose')" />
+                      <i class="icon-upload"></i>
+                      <input class="form-control input_file" type="file" id="orderfile" name="file" @change="selectedFile($event.target)"/>
+                      <div id='returnMessage' class="error_message"></div>             
+                  </form>
+                  <span class="grey_text">{{$t('part.importExplain')}}</span>&nbsp;&nbsp;<a :href="orderExcelUrl" class="purple_text">{{$t('part.templatesDownload')}}</a><br/>								
+                </div>
+                <ul class="batchImport_body batchImportdes">
+                  <li>2018/01/08 10:00 共成功建 <span class="black_text">400</span> 单，失败 <span class="orange_text">100</span> 单 <a class="purple_text">{{$t('order.Downloadfailedorders')}}。</a></li>
+                  <li>• {{$t('order.Contactinfoincomplete')}} 20 {{$t('order.orders')}}</li>
+                  <li>• {{$t('order.Addressinfoincorrect')}} 20 {{$t('order.orders')}}</li>
+                  <li>• {{$t('order.Productinfoerror')}} 20 {{$t('order.orders')}}</li>
+                  <li>• {{$t('order.addressprovider')}} 20 {{$t('order.orders')}}</li>
+                  <li>• {{$t('order.Other')}} 20 {{$t('order.orders')}}</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button data-dismiss="modal" class="btn btn-cancel" type="button">{{$t('order.Cancel')}}</button>
+            <button type="button" class="btn btn-primary"  @click="importExcel()" >{{$t('part.import')}}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
   
 </template>
@@ -224,6 +264,7 @@
       providerPhone: '',
       providerCode: '',
       providerType: '',
+      orderExcelUrl: '',
       pickerOptions: {
         disabledDate(time) {
           return time.getTime() > Date.now();
@@ -369,6 +410,62 @@
              this.orders.push(row);
           });
     },
+    selectedFile(obj) {
+      if (!obj.files) {
+          return;
+      }
+      let file = obj.files[0],
+          types = file.name.split('.')[1],
+          fileType = ["xlsx", "xls"].some(item => item === types);
+      if (!fileType) {
+          this.$message.error(this.$t('格式错误！请重新选择'));
+          return;
+      }
+      $('#showfilename').val(file.name);
+    },
+    importExcel() {
+      var that = this;
+      let files = document.getElementById('orderfile').files;
+      if (files && files.length) {
+        var fd = new FormData();
+        fd.append('file', files[0]);
+        fd.append('assLang', Cookies.get('assLang'));
+        var reader = new window.FileReader()
+        // 文件大小 100KB
+        //var fileSize = 100 * 1024
+        reader.readAsDataURL(files[0])
+        reader.onload = function (e) {
+          // if (e.target.result.length > fileSize) {
+          //   that.$dispatch('show-alert', 'msg_1016')
+          //     document.getElementById('orderfile').value = ''
+          // } else {
+            var xhr = new XMLHttpRequest()
+            xhr.addEventListener('load', that.uploadComplete, false)
+            xhr.open('POST', 'api/part/importPartFactory')
+            xhr.send(fd)
+          //}
+        }
+      }else{
+          this.$message.error(this.$t('请选择文件!'));
+      }
+    },
+    uploadComplete(evt) {
+      const rtnObj = $.parseJSON(evt.target.response);
+      if(rtnObj.status=='0'){
+        this.$message({ message: rtnObj.message,type: 'success' });
+        $('#batchImport').modal('hide');
+        this.getList();
+      }else{
+        $("#returnMessage").html(rtnObj.message);
+      }
+      $('#orderfile').val('');
+    },
+    getExcelUrl(){
+      var language = Cookies.get('assLang');
+      getPartExcelUrl(language).then(response => {
+        this.orderExcelUrl = response.data;
+      })
+    },
     // handleLockOrder(){
     //     if(this.orderNumbers.length==0){
     //         this.$message.error('请选择工单信息！');
@@ -452,6 +549,21 @@
 }
 </script>
 <style>
+.batchImport_body .input_file{
+  opacity: 0;
+  cursor: pointer;
+  position: absolute;
+  top:20px;
+  left: 0;
+  margin: 0 30px;
+  width: 91%!important;
+}
+.batchImport_body .icon-upload{
+  position: absolute;
+  top:26px;
+  right: 40px;  
+}
+
 .el-date-editor--daterange.el-input{
  width: 190px
 }

@@ -1143,6 +1143,34 @@ a:focus {
     color: #666577;
 }
 
+.grey_text{
+    color: #b2b2b2;
+}
+.purple_text{
+    color: #7761f2;
+}
+.purple_text:hover{
+    color: #7761f2;
+}
+.black_text{
+    color: #3c3c48;
+}
+.orange_text{
+    color: #eb6100
+}
+.batchImport_body{
+    padding: 20px 30px;
+    border-bottom:1px solid #e8ebfa;
+}
+.batchImportdes{
+    color: #88abda;
+    line-height: 20px;
+}
+.error_message{
+    padding-top:12px;
+    color: red;
+    margin-bottom: 10px;
+}
 #top_menu {
     z-index: 100;
 }
