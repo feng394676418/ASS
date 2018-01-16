@@ -35,11 +35,21 @@ export function checkReportUpdate(checkReportForm) {
     });
 }
 
+// 统一报价进行维修
 export function confirmQuotesUpdate(orderNumber, uid) {
     return fetch({
         url: 'api/check/report/confirm_quotes',
         method: 'patch',
         params: { orderNumber, uid }
+    });
+}
+
+// 拒绝报价放弃维修
+export function rejectQuotes(orderNumber) {
+    return fetch({
+        url: 'api/check/report/reject/quotes',
+        method: 'patch',
+        params: { orderNumber }
     });
 }
 

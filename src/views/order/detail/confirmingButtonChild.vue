@@ -49,7 +49,7 @@
 
 <script>
 
-import { confirmQuotesUpdate } from 'api/report';
+import { confirmQuotesUpdate, rejectQuotes } from 'api/report';
 
 // 确认报价组件
 export default {
@@ -101,21 +101,40 @@ export default {
         this.Quote = '0';
         $('#btnSubmit').removeAttr('disabled');
     },
+    // 报价处理
     confirm() {
       // 防止连续点击
       $('#btnSubmit').attr('disabled', 'true');
       setTimeout(() => {
           $('#btnSubmit').removeAttr('disabled');
       }, 3000);
-      confirmQuotesUpdate(this.orderNumber, this.uid).then(response => {
+      if (this.Quote === '1') {
+        console.log('同意报价');
+        // 同意报价
+        confirmQuotesUpdate(this.orderNumber, this.uid).then(response => {
+            if (response.data.status === '0') {
+                this.$message.info(this.$t('order.Detail.Quoteconfirmedfinished'));
+                this.$emit('listenBaseInfo');
+                $('#myModal6').modal('hide');
+            } else {
+                this.$message.error(this.$t('order.Detail.Quoteconfirmationfailed'));
+            }
+        });
+      } else if (this.Quote === '0') {
+        // 拒绝报价 保内直接发货 保外直接结算
+        console.log('拒绝报价');
+        rejectQuotes(this.orderNumber).then(response => {
           if (response.data.status === '0') {
               this.$message.info(this.$t('order.Detail.Quoteconfirmedfinished'));
               this.$emit('listenBaseInfo');
               $('#myModal6').modal('hide');
           } else {
-              this.$message.info(this.$t('order.Detail.Quoteconfirmationfailed'));
+              this.$message.error(this.$t('order.Detail.Quoteconfirmationfailed'));
           }
-      });
+        });
+      } else {
+        // doNothing
+      }
     }
   }
 }
