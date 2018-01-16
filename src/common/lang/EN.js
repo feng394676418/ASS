@@ -196,7 +196,7 @@ export default {
             workorderreceived: 'Confirmed shipment, Work Order pending received.',
             endworkorder: 'Shipment status shows as received, Work Order finished.',
             TransactionNoNOTNULL: 'Transaction No. cannot be null!',
-            Agreetorepair: 'Agree to repair',
+            Agreetorepair: 'Agree to quote',
             totalcost: 'the total cost is',
             agreeingquotedes: 'Repair service will start after agreeing to the quote; Customers need to settle the quotation when the service is completed.',
             Disagreequotation: 'Disagree to the quotation',

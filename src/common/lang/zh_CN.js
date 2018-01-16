@@ -196,7 +196,7 @@ export default {
             workorderreceived: '完成发货,工单待收货。',
             endworkorder: '货况显示已收货,工单完结。',
             TransactionNoNOTNULL: '交易流水号不能为空!',
-            Agreetorepair: '同意维修',
+            Agreetorepair: '同意报价',
             totalcost: '费用总计',
             agreeingquotedes: '同意报价后，将开始维修，维修完成后客户需要按报价金额结算。',
             Disagreequotation: '拒绝报价',
