@@ -302,6 +302,7 @@
         }
   },
   created() {
+       $('#nav8').children().find('li').addClass('is-active');
         this.$t('order.statusItems').forEach(function (item) {
             item.active = false;
 　　　　});
@@ -318,6 +319,9 @@
         _this.getProviderList();
 
   },
+  beforeDestroy() {
+		$('#nav8').children().find('li').removeClass('is-active');
+	},
   methods: {
     getList() {
           this.listLoading = true;

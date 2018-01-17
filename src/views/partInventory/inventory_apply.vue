@@ -285,7 +285,11 @@ export default {
       // 货主list获取
       this.getProviderCodeList();
       this.searchBaseInfoList();
+      $('#nav9').next().children().find('li').eq(2).addClass('is-active');
   },
+  beforeDestroy() {
+		$('#nav9').next().children().find('li').eq(2).removeClass('is-active');
+	},
   methods: {
     statusChange(val) {
       console.log(val);

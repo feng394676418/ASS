@@ -274,7 +274,7 @@ export default {
 		this.getBaseInfo();
 		$('#nav9').next().children().find('li').eq(2).addClass('is-active');
 	},
-		beforeDestroy() {
+	beforeDestroy() {
 		$('#nav9').next().children().find('li').eq(2).removeClass('is-active');
 	},	
 }
