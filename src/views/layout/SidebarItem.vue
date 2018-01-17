@@ -112,9 +112,6 @@ export default {
 
 
 <style>
-.is-active{
-    background: #2486c5;
-}
 .hamburger-container {
             padding: 13px 0;
         }
