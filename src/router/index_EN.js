@@ -128,13 +128,13 @@ export const asyncRouterMap_EN = [{
         noDropdown: true,
         children: [{ path: 'index', component: Permission, name: '权限测试页', meta: { role: ['admin'] } }]
     },
-    {
-        path: '/baseInfo',
-        redirect: '/baseInfo/detail',
-        component: Layout,
-        hidden: true,
-        children: [{ path: 'detail/:orderNumber', component: orderDetail, hidden: true, name: '详细信息' }]
-    },
+    // {
+    //     path: '/baseInfo',
+    //     redirect: '/baseInfo/detail',
+    //     component: Layout,
+    //     hidden: true,
+    //     children: [{ path: 'detail/:orderNumber', component: orderDetail, hidden: true, name: '详细信息' }]
+    // },
     {
         path: '/order',
         component: Layout,
@@ -142,7 +142,10 @@ export const asyncRouterMap_EN = [{
         icon: 'order',
         noDropdown: true,
         name: 'Work Order',
-        children: [{ path: 'index', component: OrderIndex, name: 'Work Order' }]
+        children: [
+            { path: 'index', component: OrderIndex, name: 'Work Order' },
+            { path: '/baseInfo/detail/:orderNumber', component: orderDetail, name: '详细信息' }
+        ]
 
     },
     {
