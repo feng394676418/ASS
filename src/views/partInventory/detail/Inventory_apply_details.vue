@@ -271,9 +271,11 @@ export default {
   },
 	created() {
 		this.searchLogInfoList();
-		this.getBaseInfo();
-		$('#nav9').next().children().find('li').eq(2).addClass('is-active');
+		this.getBaseInfo();		
 	},
+	beforeUpdate() {
+		$('#nav9').next().children().find('li').eq(2).addClass('is-active');
+	},	
 	beforeDestroy() {
 		$('#nav9').next().children().find('li').eq(2).removeClass('is-active');
 	},	

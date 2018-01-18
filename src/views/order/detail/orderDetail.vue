@@ -656,9 +656,11 @@ export default {
 	},
 	created() {
 		this.fetchData();
-		$('#nav8').children().find('li').addClass('is-active');
 	},
-		beforeDestroy() {
+	beforeUpdate() {
+		$('#nav8').children().find('li').addClass('is-active');
+	},	
+	beforeDestroy() {
 		$('#nav8').children().find('li').removeClass('is-active');
 	},
 	computed: {
