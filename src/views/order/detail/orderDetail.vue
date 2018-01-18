@@ -74,7 +74,7 @@
 	            <h2 class="title_shadow">{{$t('order.refNumber')}}{{baseInfo.refNumber}}
 	            <div class="pull-right">
 								<!--下载运单 子组件-->
-								<template v-if="logInfoStatus >= 18">
+								<template v-if="logInfoStatus >= 18 && logInfoStatus !== 140">
 											<downWaybillButtonChild :baseInfo = "baseInfo"></downWaybillButtonChild>
 								</template>
             		<a class="btn btn-warning" href="#/order/index">{{$t('BACK')}}</a>
@@ -314,6 +314,7 @@
 		            		</div>
 	            	</div>
 	            	<div class="side-menu-content2">
+
 	            		<p class="right_top_tips"><i class="icon_tips"></i>
 									<template v-if="logInfoStatus === 11">
 									{{$t('order.Detail.establishmentworkorder')}}
@@ -348,7 +349,14 @@
 									<template v-if="logInfoStatus === 19">
 									{{$t('order.Detail.endworkorder')}}
 									</template>
+									<template v-if="logInfoStatus === 140 && baseInfo.checkServiceType === '保内维修'">
+									{{$t('order.Detail.rejectquotesend')}}
+									</template>
+									<template v-if="logInfoStatus === 140 && baseInfo.checkServiceType === '保外维修'">
+									{{$t('order.Detail.rejectquotecalc')}}
+									</template>
 									</p>
+
 	            		<div class="scroll-bar">
 	            			<div class="scroll-box">
                     <div>
