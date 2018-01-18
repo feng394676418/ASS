@@ -122,9 +122,17 @@
           </el-date-picker>               	
               </div>
               <div class="form-group col-md-4">
-                <label for="">{{$t('order.Color')}} </label>
+                <label for="">{{$t('order.Color')}}</label>
                 <input class="form-control" id="color" alt="verifyForm" placeholder="" type="text" v-model="order.color">
               </div>
+              <div class="form-group col-md-4">
+                <label for="">原始订单号</label>
+                <input class="form-control" id="color" alt="verifyForm" placeholder="" type="text" v-model="order.color">
+              </div>
+              <div class="form-group col-md-8">              
+                &nbsp;
+              </div> 
+              <div class="clearfix"></div>                           
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.Accessories')}} </label>
                 <p>

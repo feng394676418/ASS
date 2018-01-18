@@ -379,7 +379,7 @@
 
                     <!--确认报价 子组件 货主显示-->
                     <template v-if="logInfoStatus === 13">
-                      <confirmingButtonChild v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
+                      <confirmingButtonChild :baseInfo="baseInfo" v-on:listenBaseInfo="refreshBaseInfo"></confirmingButtonChild>
                     </template>
                     <!--维修 子组件 服务商显示-->
 									  <!-- <template v-if="providerCode.substr(0,1) === 'C' && ( logInfoStatus === 14 || ( logInfoStatus === 16 && logInfoRemark === 'reject' ) )">
@@ -504,7 +504,7 @@
 											</div>
 									</template>
 									<div class="clearfix"></div>
-										<template v-if="logInfoStatus >= 16">
+										<template v-if="baseInfo.testReportList != null || baseInfo.testReportList != '' ">
 											<div v-for="testReport in baseInfo.testReportList" :key="testReport.confirmrptId">
 	            			<h3>{{$t('order.Detail.QCreport')}}({{testReport.confirmrptId}})<span :class="testReport.repairOK&&testReport.confirmOK?'fail qualified':'fail'">{{testReport.repairOK&&testReport.confirmOK?$t('order.Detail.QCPass'):$t('order.Detail.QCFail')}}</span>
 	            				<div class="pull-right">
@@ -519,8 +519,8 @@
 										</div>
 									</template>
 
-
-									<template v-if="logInfoStatus >= 17 && baseInfo.checkServiceType === '保外维修'">
+									<!--结算信息-->
+									<template v-if="logInfoStatus >= 17 && baseInfo.checkServiceType === '保外维修' && logInfoStatus !== 140 ">
 	            			<h3>{{$t('order.Detail.Payment')}} 
 	            				<div class="pull-right">
 	            					<div>
@@ -530,8 +530,8 @@
 	            			</h3>
 										</template>
 
-
-									<template v-if="logInfoStatus >= 18">
+									<!--发货信息-->
+									<template v-if="logInfoStatus >= 18 && logInfoStatus !== 140">
 	            			<h3>{{$t('order.Detail.ShipmentInfo')}} </h3>
 	            			<div class="right_inner_con no_border">
 	            			<div class="col-md-3  col-sm-6 col-xs-6">
@@ -639,6 +639,10 @@ export default {
 	},
 	created() {
 		this.fetchData();
+		$('#nav8').children().find('li').addClass('is-active');
+	},
+		beforeDestroy() {
+		$('#nav8').children().find('li').removeClass('is-active');
 	},
 	computed: {
 		...mapGetters([

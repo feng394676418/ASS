@@ -130,13 +130,13 @@ export const asyncRouterMap_ZH_CN = [{
         noDropdown: true,
         children: [{ path: 'index', component: Permission, name: '权限测试页', meta: { role: ['admin'] } }]
     },
-    {
-        path: '/baseInfo',
-        redirect: '/baseInfo/detail',
-        component: Layout,
-        hidden: true,
-        children: [{ path: 'detail/:orderNumber', component: orderDetail, hidden: true, name: '详细信息' }]
-    },
+    // {
+    //     path: '/baseInfo',
+    //     redirect: '/baseInfo/detail',
+    //     component: Layout,
+    //     hidden: true,
+    //     children: [{ path: 'detail/:orderNumber', component: orderDetail, hidden: true, name: '详细信息' }]
+    // },
     {
         path: '/order',
         component: Layout,
@@ -144,8 +144,10 @@ export const asyncRouterMap_ZH_CN = [{
         icon: 'order',
         noDropdown: true,
         name: '工单管理',
-        children: [{ path: 'index', component: OrderIndex, name: '工单管理' }]
-
+        children: [
+            { path: 'index', component: OrderIndex, name: '工单管理' },
+            { path: '/baseInfo/detail/:orderNumber', component: orderDetail, name: '详细信息' }
+        ]
     },
     {
         path: '/partInventory',
