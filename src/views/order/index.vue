@@ -188,19 +188,21 @@
                   <form id="batchform" enctype="multipart/form-data" method="post" action="">
                       <input class="form-control" type="text" id="showfilename" :placeholder="$t('order.choose')" />
                       <i class="icon-upload"></i>
-                      <input class="form-control input_file" type="file" id="orderfile" name="file" @change="selectedFile($event.target)"/>
+                      <input class="form-control input_file" type="file" id="orderFile" name="file" @change="selectedFile($event.target)" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"/>
                       <div id='returnMessage' class="error_message"></div>             
                   </form>
                   <span class="grey_text">{{$t('part.importExplain')}}</span>&nbsp;&nbsp;<a :href="orderExcelUrl" class="purple_text">{{$t('part.templatesDownload')}}</a><br/>								
                 </div>
-                <ul class="batchImport_body batchImportdes">
-                  <li>2018/01/08 10:00 共成功建 <span class="black_text">400</span> 单，失败 <span class="orange_text">100</span> 单 <a class="purple_text">{{$t('order.Downloadfailedorders')}}。</a></li>
-                  <li>• {{$t('order.Contactinfoincomplete')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Addressinfoincorrect')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Productinfoerror')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.addressprovider')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Other')}} 20 {{$t('order.orders')}}</li>
-                </ul>
+                <div id="importRstInfo" v-show="importRstInfo.isShow">
+                  <ul class="batchImport_body batchImportdes">
+                    <li>{{importRstInfo.currTime}} 共成功建 <span class="black_text">{{importRstInfo.orderSuccessNum}}</span> 单，失败 <span class="orange_text">{{importRstInfo.orderErrorNum}}</span> 单 <a class="purple_text" :href="importRstInfo.errorOrderUrl" target="_blank">{{$t('order.Downloadfailedorders')}}。</a></li>
+                    <li>• {{$t('order.Contactinfoincomplete')}} {{importRstInfo.userInfoErrorNum}} {{$t('order.orders')}}</li>
+                    <li>• {{$t('order.Addressinfoincorrect')}} {{importRstInfo.addressInfoErrorNum}} {{$t('order.orders')}}</li>
+                    <li>• {{$t('order.Productinfoerror')}} {{importRstInfo.productInfoErrorNum}} {{$t('order.orders')}}</li>
+                    <li>• {{$t('order.addressprovider')}} {{importRstInfo.addressOutRangErrorNum}} {{$t('order.orders')}}</li>
+                    <li>• {{$t('order.Other')}} {{importRstInfo.otherErrorNum}} {{$t('order.orders')}}</li>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
@@ -228,6 +230,7 @@
   import rightButtonChild from './../layout/rightButtonChild';
   import Vue from 'vue';
   import bootstrap from 'bootstrap';
+  import Cookies from 'js-cookie';
  
   export default {
     name : 'orderMgr',
@@ -270,6 +273,18 @@
           return time.getTime() > Date.now();
         }
       },
+      importRstInfo: {
+        isShow: false,
+        currTime: "",
+        userInfoErrorNum: 0,
+        addressInfoErrorNum: 0,
+        productInfoErrorNum: 0,
+        addressOutRangErrorNum: 0,
+        otherErrorNum: 0,
+        orderSuccessNum: 0,
+        orderErrorNum: 0,
+        errorOrderUrl: ""
+      }
     }
   },
   beforeCreate(){
@@ -425,7 +440,7 @@
     },
     importExcel() {
       var that = this;
-      let files = document.getElementById('orderfile').files;
+      let files = document.getElementById('orderFile').files;
       if (files && files.length) {
         var fd = new FormData();
         fd.append('file', files[0]);
@@ -437,11 +452,11 @@
         reader.onload = function (e) {
           // if (e.target.result.length > fileSize) {
           //   that.$dispatch('show-alert', 'msg_1016')
-          //     document.getElementById('orderfile').value = ''
+          //     document.getElementById('orderFile').value = ''
           // } else {
             var xhr = new XMLHttpRequest()
             xhr.addEventListener('load', that.uploadComplete, false)
-            xhr.open('POST', 'api/part/importPartFactory')
+            xhr.open('POST', 'api/morder/importOrder')
             xhr.send(fd)
           //}
         }
@@ -451,14 +466,25 @@
     },
     uploadComplete(evt) {
       const rtnObj = $.parseJSON(evt.target.response);
+      console.dir("***********************************");
+      console.dir(rtnObj);
       if(rtnObj.status=='0'){
-        this.$message({ message: rtnObj.message,type: 'success' });
-        $('#batchImport').modal('hide');
-        this.getList();
+        this.importRstInfo.isShow = true;
+        this.importRstInfo.currTime = rtnObj.currTime
+        this.importRstInfo.userInfoErrorNum= rtnObj.userInfoErrorNum
+        this.importRstInfo.addressInfoErrorNum= rtnObj.addressInfoErrorNum
+        this.importRstInfo.productInfoErrorNum= rtnObj.productInfoErrorNum
+        this.importRstInfo.addressOutRangErrorNum= rtnObj.addressOutRangErrorNum
+        this.importRstInfo.otherErrorNum= rtnObj.otherErrorNum
+        this.importRstInfo.orderSuccessNum= rtnObj.orderSuccessNum
+        this.importRstInfo.orderErrorNum= rtnObj.orderErrorNum
+        this.importRstInfo.errorOrderUrl= rtnObj.errorOrderUrl
+       // $('#batchImport').modal('hide');
+       // this.getList();
       }else{
         $("#returnMessage").html(rtnObj.message);
       }
-      $('#orderfile').val('');
+      $('#orderFile').val('');
     },
     getExcelUrl(){
       var language = Cookies.get('assLang');
