@@ -127,7 +127,7 @@
               </div>
               <div class="form-group col-md-4">
                 <label for="">{{$t('order.Originalorderno')}}</label>
-                <input class="form-control" id="color" alt="verifyForm" placeholder="" type="text" v-model="order.color">
+                <input class="form-control" id="originalnumber" alt="verifyForm" placeholder="" type="text" v-model="order.originalnumber">
               </div>
               <div class="form-group col-md-8">              
                 &nbsp;
@@ -210,7 +210,7 @@ import { getChannelList } from 'api/channelMgr';
 import { addOrder, getOrderByOrderNumber } from 'api/morder';
 import { parseTime } from 'utils/index';
 import Vue from 'vue';
-import { getCountryList, getStateList, getCityList} from 'api/country_state';
+import { getCountryList, getStateList, getCityList } from 'api/country_state';
 import Cookies from 'js-cookie';
 
 export default {
@@ -218,6 +218,7 @@ export default {
   data() {
     return {
       order: {
+          originalnumber: '', // 原始工单号 TODO
           orderNumber: '',
           refNumber: '',
           userName: '',
