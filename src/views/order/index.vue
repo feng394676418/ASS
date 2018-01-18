@@ -193,7 +193,6 @@
                   </form>
                   <span class="grey_text">{{$t('part.importExplain')}}</span>&nbsp;&nbsp;<a :href="orderExcelUrl" class="purple_text">{{$t('part.templatesDownload')}}</a><br/>								
                 </div>
-<<<<<<< HEAD
                 <div id="importRstInfo" v-show="importRstInfo.isShow">
                   <ul class="batchImport_body batchImportdes">
                     <li>{{importRstInfo.currTime}} 共成功建 <span class="black_text">{{importRstInfo.orderSuccessNum}}</span> 单，失败 <span class="orange_text">{{importRstInfo.orderErrorNum}}</span> 单 <a class="purple_text" :href="importRstInfo.errorOrderUrl" target="_blank">{{$t('order.Downloadfailedorders')}}。</a></li>
@@ -204,16 +203,6 @@
                     <li>• {{$t('order.Other')}} {{importRstInfo.otherErrorNum}} {{$t('order.orders')}}</li>
                   </ul>
                 </div>
-=======
-                <ul class="batchImport_body batchImportdes">
-                  <li>2018/01/08 10:00 <span class="black_text">400</span> {{$t('order.orders')}} {{$t('order.pass')}}，<span class="orange_text">100</span> {{$t('order.orders')}} {{$t('order.failed')}} <a class="purple_text">{{$t('order.Downloadfailedorders')}}。</a></li>
-                  <li>• {{$t('order.Contactinfoincomplete')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Addressinfoincorrect')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Productinfoerror')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.addressprovider')}} 20 {{$t('order.orders')}}</li>
-                  <li>• {{$t('order.Other')}} 20 {{$t('order.orders')}}</li>
-                </ul>
->>>>>>> b6ac10d7b99913a743ce89b5136769b97a3de434
               </div>
             </div>
           </div>
