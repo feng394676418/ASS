@@ -155,11 +155,11 @@ export const asyncRouterMap_EN = [{
         icon: 'inventory',
         name: 'Parts',
         children: [
-            { path: 'manufacturer/index', component: manufacturerPartInventory, name: 'Inventory' },
-            { path: 'manufacturer/stockOrder', component: manufacturerStockOrder, name: 'Stock Orders' },
+            { path: 'manufacturer/index', component: manufacturerPartInventory, icon: 'i', name: 'Inventory' },
+            { path: 'manufacturer/stockOrder', component: manufacturerStockOrder, icon: 's', name: 'Stock Orders' },
             { path: 'manufacturer/stockOrderDetail/:stockOrderNumber', component: manufacturerStockOrderDetail, hidden: true, name: 'warehouse details' },
             { path: 'manufacturer/change/index/:sku/:owner/:providerCode/:inventoryType', hidden: true, component: manufacturerPartInventoryChange, name: 'Inventory water' },
-            { path: 'inventory_apply', component: inventory_apply, name: 'Apply parts', meta: { role: ['admin'] } },
+            { path: 'inventory_apply', component: inventory_apply, icon: 'a', name: 'Apply parts', meta: { role: ['admin'] } },
             { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['admin'] } }
             // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['admin'] } }
         ]
@@ -172,10 +172,10 @@ export const asyncRouterMap_EN = [{
         name: 'Setting',
         icon: 'set',
         children: [
-            { path: 'index', component: PartIndex, name: 'Spare parts' },
-            { path: 'warehouse_index', component: WarehouseIndex, name: 'Warehouse' },
+            { path: 'index', component: PartIndex, icon: 's', name: 'Spare parts' },
+            { path: 'warehouse_index', component: WarehouseIndex, icon: 'w', name: 'Warehouse' },
             // { path: 'model_index', component: ModelInfoIndex, name: 'Model' }, //三期启用
-            { path: 'set_index', component: SetIndex, name: 'Password' }
+            { path: 'set_index', component: SetIndex, icon: 'p', name: 'Password' }
             // { path: 'index', component: PartIndex, name: '备件库存 ' },
             // { path: 'tinymce', component: Tinymce, name: '备件库存' },
             // { path: 'markdown', component: Markdown, name: '备件出入库单' }
