@@ -187,6 +187,8 @@ export default {
             downloadWaybill: '下载运单',
             establishmentworkorder: '建立工单,工单待受理。',
             workorderaccepted: '编辑工单,工单待受理。',
+            rejectquotesend: '拒绝报价,工单待发货',
+            rejectquotecalc: '拒绝报价,工单待结算',
             workordertested: '受理工单,工单待检测。',
             Workorderconfirmed: '完成检测,工单待确认报价。',
             workorderrepaired: '确认报价,工单待维修。',
