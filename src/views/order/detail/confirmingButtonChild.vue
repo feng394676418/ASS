@@ -19,7 +19,7 @@
 	              <div class="form-group grey_border Agree_repair_active" :class="{Agree_repair: AgreeActive}" @click="Agree_repair">
                   <el-radio v-model="Quote" label="1">
                     <!--同意报价-->
-                    <p>{{$t('order.Detail.Agreetorepair')}} :{{$t('order.Detail.totalcost')}} <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.repairCost + baseInfo.partsCost | money}}</strong></p>
+                    <p>{{$t('order.Detail.Agreetorepair')}} :{{$t('order.Detail.totalcost')}} <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.repairCost + baseInfo.partsCost + baseInfo.valueAddTax | money}}</strong></p>
                     <p><span  class="text_blue">{{$t('order.Detail.agreeingquotedes')}} </span></p>
                   </el-radio>               
 	                <!-- <p>{{$t('order.Detail.Quotationdescription')}}</p> -->
@@ -27,7 +27,7 @@
 	              <div class="form-group grey_border Refuse_repair_active" :class="{Refuse_repair: RefuseActive}" @click="Refuse_repair">                  
                   <el-radio v-model="Quote" label="0">
                     <!--拒绝报价-->
-                    <p>{{$t('order.Detail.Disagreequotation')}} :{{$t('order.Detail.totalcost')}}  <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + baseInfo.partsCost | money}}</strong></p>
+                    <p>{{$t('order.Detail.Disagreequotation')}} :{{$t('order.Detail.totalcost')}}  <strong class="text_yellow">€ {{baseInfo.collectionCost + baseInfo.mailingCost + (baseInfo.collectionCost + baseInfo.mailingCost) * 0.23 | money}}</strong></p>
                     <p><span  class="text_blue">{{$t('order.Detail.quotationrefuseddes')}} </span></p>
                   </el-radio> 
 	              </div>                
