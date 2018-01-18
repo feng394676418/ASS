@@ -60,6 +60,7 @@ export default {
         Cancel: '取 消',
         Affirm: '确 认',
         editOK: '编辑成功！',
+        Originalorderno: '原始订单号',
         statusItems: [
             { name: '全部', value: '0', status: '-1' },
             { name: '待受理', value: '0', status: '11' },
@@ -110,7 +111,7 @@ export default {
             Inboundshippingcost: '收件运费',
             OutboundShippingCost: '寄件运费',
             Servicecost: '服务费',
-            Total: '总计',
+            Total: '合计',
             QCreport: '产品质检',
             QCFail: '不合格',
             malfunction: '故障',
@@ -200,7 +201,8 @@ export default {
             totalcost: '费用总计',
             agreeingquotedes: '同意报价后，将开始维修，维修完成后客户需要按报价金额结算。',
             Disagreequotation: '拒绝报价',
-            quotationrefuseddes: '拒绝报价后，会寄回待维修件，客户需要支付往返的快递费用，支付完成后方可发货。'
+            quotationrefuseddes: '拒绝报价后，会寄回待维修件，客户需要支付往返的快递费用，支付完成后方可发货。',
+            VAT: '增值税(23%)'
         },
         modalNotInput: '产品型号必须填写!',
         imeiNoNotInput: '产品IMEI必须填写!',

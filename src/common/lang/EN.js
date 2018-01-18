@@ -60,6 +60,7 @@ export default {
         Cancel: 'Cancel',
         Affirm: 'Affirm',
         editOK: 'Edited successfully',
+        Originalorderno: 'Original order no.',
         statusItems: [
             { name: 'All', value: '0', status: '-1' },
             { name: 'Pending acceptance', value: '0', status: '11' },
@@ -200,7 +201,8 @@ export default {
             totalcost: 'the total cost is',
             agreeingquotedes: 'Repair service will start after agreeing to the quote; Customers need to settle the quotation when the service is completed.',
             Disagreequotation: 'Disagree to the quotation',
-            quotationrefuseddes: 'If the quotation is refused, device will be returned to the customer once round trip delivery cost is received'
+            quotationrefuseddes: 'If the quotation is refused, device will be returned to the customer once round trip delivery cost is received',
+            VAT: 'VAT (23%)'
         },
         modalNotInput: 'The product modal must be set!',
         imeiNoNotInput: 'The IMEI NO. must be set!',

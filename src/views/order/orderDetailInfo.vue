@@ -126,7 +126,7 @@
                 <input class="form-control" id="color" alt="verifyForm" placeholder="" type="text" v-model="order.color">
               </div>
               <div class="form-group col-md-4">
-                <label for="">原始订单号</label>
+                <label for="">{{$t('order.Originalorderno')}}</label>
                 <input class="form-control" id="color" alt="verifyForm" placeholder="" type="text" v-model="order.color">
               </div>
               <div class="form-group col-md-8">              
