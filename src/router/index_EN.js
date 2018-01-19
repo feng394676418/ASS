@@ -159,7 +159,7 @@ export const asyncRouterMap_EN = [{
             { path: 'manufacturer/stockOrder', component: manufacturerStockOrder, icon: 's', name: 'Stock Orders' },
             { path: 'manufacturer/stockOrderDetail/:stockOrderNumber', component: manufacturerStockOrderDetail, hidden: true, name: 'warehouse details' },
             { path: 'manufacturer/change/index/:sku/:owner/:providerCode/:inventoryType', hidden: true, component: manufacturerPartInventoryChange, name: 'Inventory water' },
-            { path: 'inventory_apply', component: inventory_apply, icon: 'a', name: 'Apply parts', meta: { role: ['admin'] } },
+            { path: 'inventory_apply', component: inventory_apply, icon: 'a1', name: 'Apply parts', meta: { role: ['admin'] } },
             { path: 'detail/:stockOrderNumber', component: inventory_apply_details, hidden: true, name: 'Apply parts', meta: { role: ['admin'] } }
             // { path: 'badback', component: inventory_bad_back, name: 'Bad pieces', meta: { role: ['admin'] } }
         ]
